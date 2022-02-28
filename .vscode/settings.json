@@ -1,0 +1,6 @@
+{
+    "python.analysis.extraPaths": [
+        "./src/data_preparation",
+        "./src/lib",
+    ]
+}
