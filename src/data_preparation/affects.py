@@ -23,6 +23,8 @@ class Affects:
     
     """
 
+    __name__ = 'Affects'
+
     def __init__(self, base_directory='./data', input_directory='with_region') -> None:
         self.base_directory = base_directory
         self.output_directory = f'{self.base_directory}/affects'
@@ -31,7 +33,7 @@ class Affects:
         self.past_data = pd.read_csv(self.input_directory + '/HistoricData.csv')
         self.data_2021 = pd.read_csv(self.input_directory + '/Data_2021.csv')
         self.retroactive_positive_affects = []
-        self.retroactive_negative_affects = []
+        self.retroactive_negative_affects = []        
 
     def get_affects_by_year_and_country(self):
         past_data_affects = self.past_data[[

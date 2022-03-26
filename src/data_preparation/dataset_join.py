@@ -20,6 +20,8 @@ class DatasetsJoin:
     
     """
 
+    __name__ = 'DatasetsJoin'
+
     def __init__(self, base_directory='./data', input_directory='affects') -> None:
         self.base_directory = base_directory
         self.output_directory = f'{self.base_directory}/joined_dataset'

@@ -23,6 +23,8 @@ class Region:
     
     """
 
+    __name__ = 'Region'
+
     def __init__(self, base_directory = './data', input_directory='cleaned_columns') -> None:
         self.base_directory = base_directory
         self.output_directory = f'{self.base_directory}/with_region'

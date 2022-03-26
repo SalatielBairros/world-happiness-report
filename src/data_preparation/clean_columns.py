@@ -25,6 +25,8 @@ class CleanColumns:
     
     """
 
+    __name__ = 'CleanColumns'
+
     def __init__(self, base_directory = './data', input_directory='original'):
         self.base_directory = base_directory
         self.input_directory = f'{self.base_directory}/{input_directory}'
