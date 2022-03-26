@@ -2,6 +2,27 @@ import pandas as pd
 from lib.io_helper import create_directory_if_not_exists
 
 class Region:
+    """
+    Esta é a segunda etapa da preparação e limpeza iniciais dos dados do Relatório de Felicidade Mundial.
+    Ela é necessária pois apenas os dados de 2021 são preenchidos com a região no mundo em que um país se encontra. 
+    Para resolver isso foi realizado o preenchimento dos dados históricos baseado na região informada nos dados do ano de 2021.
+    Contudo, nem todos os países do mundo possuem a informação de região no ano de 2021. 
+    Para resolver isso foram utilizadas bases do Kaggle de 2015 e 2016 que continham esses dados.
+    Os datasets resultantes são salvos em uma pasta chamada 'with_region' dentro da pasta do diretório informado no construtor.
+    Attributes
+    ----------
+    base_directory : str
+        Diretório base onde os datasets são armazenados e os modificados serão salvos.
+    input_directory : str
+        Diretório onde os datasets de origem estão armazenados. Os datasets de origem devem já estar com as colunas normalizadas.
+
+    Methods
+    -------
+    execute()
+        Executa o preenchimento das regiões dos países no mundo no dataset de dados históricos.
+    
+    """
+
     def __init__(self, base_directory = './data', input_directory='cleaned_columns') -> None:
         self.base_directory = base_directory
         self.output_directory = f'{self.base_directory}/with_region'

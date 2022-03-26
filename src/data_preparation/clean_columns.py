@@ -4,7 +4,7 @@ from lib.io_helper import create_directory_if_not_exists
 class CleanColumns:
     """
     Esta é a primeira etapa da preparação e limpeza iniciais dos dados do Relatório de Felicidade Mundial.
-    É composto por:
+    É composta por:
 
     1. Padronização da nomenclatura das colunas entre o dataset de dados histórios e dos dados de 2021.
     2. Exclusão das colunas do grupo "Explained by", visto que são presentes apenas no relatório de 2021 e não é relevante para os propósitos deste projeto
