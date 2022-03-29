@@ -6,10 +6,10 @@ from data_preparation.missing_data import MissingData
 from lib.commands_handler import Commands
 
 Commands() \
+    .add_command(CleanColumns) \
+    .add_command(Region) \
+    .add_command(Affects) \
+    .add_command(DatasetsJoin) \
     .add_command(MissingData) \
     .execute()
-    # .add_command(CleanColumns) \
-    # .add_command(Region) \
-    # .add_command(Affects) \
-    # .add_command(DatasetsJoin) \
     
