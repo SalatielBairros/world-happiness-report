@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-import logging
 from lib.io_helper import create_directory_if_not_exists
 
 class MissingData:
@@ -43,12 +42,9 @@ class MissingData:
         att_with_na_values = list(dataset.columns[dataset.isnull().any()])
 
         for att in att_with_na_values:
-            logging.info(f'Filling missing data for {att} - {dataset[att].isna().sum()}')
             countries = self.get_countries_with_less_than_half_missing_data(dataset, att)
             dataset = self.fill_missing_data_with_closest_data_mean(dataset, att, countries)
-            logging.info(f'Closest data missing data for {att} - {dataset[att].isna().sum()}')
             dataset = self.fill_missing_data_with_median_or_mean(dataset, att)
-            logging.info(f'Median or mean data for {att} - {dataset[att].isna().sum()}')
 
         dataset.to_csv(self.output_directory + '/complete_dataset.csv', index=False)
 

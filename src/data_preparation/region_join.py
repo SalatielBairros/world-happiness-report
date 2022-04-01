@@ -1,7 +1,7 @@
 import pandas as pd
 from lib.io_helper import create_directory_if_not_exists
 
-class Region:
+class RegionJoin:
     """
     Esta é a segunda etapa da preparação e limpeza iniciais dos dados do Relatório de Felicidade Mundial.
     Ela é necessária pois apenas os dados de 2021 são preenchidos com a região no mundo em que um país se encontra. 
@@ -23,7 +23,7 @@ class Region:
     
     """
 
-    __name__ = 'Region'
+    __name__ = 'RegionJoin'
 
     def __init__(self, base_directory = './data', input_directory='cleaned_columns') -> None:
         self.base_directory = base_directory
