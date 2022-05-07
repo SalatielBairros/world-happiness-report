@@ -32,7 +32,7 @@ class RegionCleaning:
 
         self.regions_map = {
             'central and eastern europe': 'eastern europe',
-            'southeast asia': 'asia (ex. near east)',
+            'southeast asia': 'asia',
             'middle east and north africa': 'near east',
             'somaliland region': 'sub-saharan africa'
         }
@@ -80,4 +80,4 @@ class RegionCleaning:
                 country.country, country.region, db_coutries)
 
         dataset.to_csv(
-            './data/complete_dataset/complete_dataset_region.csv', index=False)
+            f'{self.output_directory}/complete_dataset_region.csv', index=False)
