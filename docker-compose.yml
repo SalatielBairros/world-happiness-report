@@ -1,0 +1,13 @@
+version: '3.5'
+
+services:
+  webservice:
+    image: tiangolo/uvicorn-gunicorn-fastapi:python3.8
+    environment:
+      - APP_URL=$HOST:$APP_PORT
+    volumes:
+      - ./webservice:/app/
+      - ./scripts:/usr/local/scripts/
+    command: /bin/sh '/usr/local/scripts/dev/service.sh'
+    ports:
+      - '${SERVICE_PORT}:80'
