@@ -74,6 +74,8 @@ class Affects:
         return 0
 
     def execute(self):
+        self.get_affects_by_year_and_country()
+
         self.data_2021['positive_affect'] = self.data_2021['country'].apply(self.get_positive_affects)
         self.data_2021['negative_affect'] = self.data_2021['country'].apply(self.get_negative_affects)
 

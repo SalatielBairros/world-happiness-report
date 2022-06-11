@@ -31,7 +31,6 @@ class DatasetsJoin:
     def execute(self):
         past_data = pd.read_csv(self.input_directory + '/HistoricData.csv')
         data_2021 = pd.read_csv(self.input_directory + '/Data_2021.csv')
-
         data_2021['year'] = 2021
 
         columns = data_2021.columns
@@ -40,5 +39,4 @@ class DatasetsJoin:
         datasets = [past_data, data_2021]
 
         full_dataset = pd.concat(datasets)
-
         full_dataset.to_csv(self.output_directory + '/full_dataset.csv', index=False)
