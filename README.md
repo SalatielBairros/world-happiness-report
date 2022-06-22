@@ -18,7 +18,7 @@ Um modelo de regressão do nível de felicidade no mundo. Utiliza os dados do [W
 
 ## ARQUITETURA DO PROJETO
 
-[Estrutura de pastas](https://github.com/SalatielBairros/world-happiness-report/docs/Architecture.md)
+[Estrutura de pastas](https://github.com/SalatielBairros/world-happiness-report/blob/main/docs/Architecture.md)
 
 ## ACESSO AO PROJETO
 
