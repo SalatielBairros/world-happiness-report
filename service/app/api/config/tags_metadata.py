@@ -1,10 +1,6 @@
 tags_metadata = [
   {
-    "name": 'Hello world',
+    "name": 'BUSCAR DATASET COMPLETO',
     "description": "Hello world description"
-  },
-  {
-    "name": 'Hello world V2',
-    "description": "Hello world description 2"
   }
 ]
