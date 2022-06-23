@@ -1,5 +1,8 @@
-import pandas as pd
 import json
+from os import path
+
+import pandas as pd
+
 
 class FetchDataset:
 
@@ -7,9 +10,14 @@ class FetchDataset:
     self.input_file = r'/app/app/api/datasets/complete_dataset_region.csv'
 
   def fetched_dataset(self):
-    dataset = self.read_csv_dataset(self.input_file)
-    json_dataset = self.format_dataset_to_json(dataset)
-    return json_dataset
+    if (path.exists(self.input_file)):
+      dataset = self.read_csv_dataset(self.input_file)
+      json_dataset = self.format_dataset_to_json(dataset)
+      return json_dataset
+    else:
+      return {
+        "message": "Não há dataset gerado."
+      }
 
   def read_csv_dataset(self, dataset):
     return  pd.read_csv(dataset, names=(
