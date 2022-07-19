@@ -29,6 +29,16 @@ Na raiz do projeto o seguinte comando deve ser executado para a preparação do 
 python3 src/data_preparation_commands.py
 ```
 
+Após o dataset se gerado ele pode ser consumido pela API, para iniciar devemos digitar o seguinte comando tambem na raiz do projeto.
+
+Obs: deve-se ter o Docker e Docker compose instalado.
+
+```shell
+docker-compose up
+```
+
+A documentação da API e gerada de maneira automática com o Swagger em `http://localhost:8002/docs`
+
 ## TECNOLOGIAS UTILIZADAS
 
 * ``Python``
