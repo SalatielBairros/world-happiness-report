@@ -5,7 +5,7 @@ services:
     image: tiangolo/uvicorn-gunicorn-fastapi:python3.9
     # environment:
     volumes:
-      - ./service:/app/
+      - .:/app/
       - ./sh:/usr/local/sh/
     command: /bin/sh '/usr/local/sh/service.sh'
     ports:
