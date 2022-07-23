@@ -14,8 +14,8 @@ class RegionService:
         }
 
     def __merge_kaggle_datasets__(self):
-        df_2015 = pd.read_csv('./data/reference/region/kaggle_2015.csv')[['Country', 'Region']]
-        df_2016 = pd.read_csv('./data/reference/region/kaggle_2016.csv')[['Country', 'Region']]
+        df_2015 = pd.read_csv('./data/original/kaggle_2015.csv')[['Country', 'Region']]
+        df_2016 = pd.read_csv('./data/original/kaggle_2016.csv')[['Country', 'Region']]
         kaggle_region_datasets = df_2015.append(df_2016, ignore_index=True)
         kaggle_region_datasets = kaggle_region_datasets.groupby('Country').first().reset_index()
         kaggle_region_datasets.to_csv(self.kaggle_region_dataset, index=False)
@@ -31,11 +31,11 @@ class RegionService:
         return None
 
     def __exists_kaggle_region_datasets__(self):
-        return path.exists('./data/reference/region/kaggle_2015.csv') and path.exists('./data/reference/region/kaggle_2016.csv')
+        return path.exists('./data/original/kaggle_2015.csv') and path.exists('./data/original/kaggle_2016.csv')
 
     @memo
     def get_db_countries(self):
-        countries_usa_database = pd.read_csv('./data/reference/region/countries_usa_database.csv')
+        countries_usa_database = pd.read_csv('./data/processed/countries_usa_database.csv')
 
         countries = countries_usa_database[['Country', 'Region']].dropna()
         countries.columns = ['country', 'region']

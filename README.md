@@ -40,6 +40,13 @@ docker-compose up
 
 A documentação da API e gerada de maneira automática com o Swagger em `http://localhost:8002/docs`
 
+```json
+{
+    "OriginalHistoricDataUrl": "https://github.com/SalatielBairros/world-happiness-report/raw/main/data/original/HistoricData.xls",
+    "Data2021Url": "https://github.com/SalatielBairros/world-happiness-report/raw/main/data/original/Data_2021.xls"
+}
+```
+
 ## TECNOLOGIAS UTILIZADAS
 
 * ``Python``

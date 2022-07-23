@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from services.model_evaluation_service import ModelEvaluationService
 from models.regression.knn_model import KnnModel
 
-router = APIRouter(prefix="/knn")
+router = APIRouter(prefix="/knn", tags=["KNeighborsRegressor"])
 
 @router.get("/evaluate")
 def evaluate_model():

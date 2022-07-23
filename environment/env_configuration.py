@@ -5,12 +5,13 @@ import numpy as np
 import pandas as pd
 from environment.constants import EnvironmentVariables
 
-# def configure_environment_from_file(file_path = './appsettings.json'):
-#     if(path.exists(file_path)):
-#         logging.info('Configurating environment from file...\n')
-#         with open(file_path) as file:
-#             configurations = json.load(file)
-#             env["VAR"] = configurations["VAR"]
+def configure_environment_from_file(file_path = './appsettings.json'):
+    if(path.exists(file_path)):
+        logging.info('Configurating environment from file...\n')
+        with open(file_path) as file:
+            configurations = json.load(file)
+            env["OriginalHistoricDataUrl"] = configurations["OriginalHistoricDataUrl"]
+            env["Data2021Url"] = configurations["Data2021Url"]
 
 def configurate_logging():
     logging.basicConfig(format="%(asctime)s: %(message)s",
@@ -28,4 +29,4 @@ def prepare_environment():
     configurate_logging()    
     configure_pandas()
     configure_numpy_seed()
-    # configure_environment_from_file() 
+    configure_environment_from_file() 
