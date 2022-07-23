@@ -15,6 +15,6 @@ def configurate_logging():
                         datefmt="%H:%M:%S")   
     logging.info('Logging configurated')
 
-def preparing_environment():
+def prepare_environment():
     configurate_logging()    
     # configure_environment_from_file() 

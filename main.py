@@ -1,23 +1,7 @@
 from fastapi import FastAPI
-from starlette.middleware.cors import CORSMiddleware
+from environment.env_configuration import prepare_environment 
+from app.api.controllers.index_controller import router as index_router
 
-from app.api.config.tags_metadata import tags_metadata
-
-from app.api.v1.routes import api_router_v1
-
-app = FastAPI (
-  title="WHR TCC at PUC-Minas",
-  description="Some description",
-  version="1.0.0",
-  openapi_tagas=tags_metadata
-)
-
-app.add_middleware (
-  CORSMiddleware,
-  allow_origins=["*"],
-  allow_credentials=True,
-  allow_methods=["*"],
-  allow_headers=["*"],
-)
-
-app.include_router(api_router_v1, prefix="/v1")
+prepare_environment()
+app = FastAPI()
+app.include_router(index_router)
