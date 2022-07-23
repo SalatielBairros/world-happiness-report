@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-from lib.io_helper import create_directory_if_not_exists
 
 class MissingData:
     """
@@ -17,10 +16,8 @@ class MissingData:
     Os datasets resultantes são salvos em uma pasta chamada 'complete_dataset' dentro da pasta do diretório informado no construtor.
     Attributes
     ----------
-    base_directory : str
-        Diretório base onde os datasets são armazenados e os modificados serão salvos.
-    input_directory : str
-        Diretório onde os datasets de origem estão armazenados. Os datasets de origem devem já estar com as colunas normalizadas.
+    dataset : pd.DataFrame
+        Dataset para aplicar as transformações dos dados.    
 
     Methods
     -------
@@ -31,28 +28,24 @@ class MissingData:
 
     __name__ = 'MissingData'
 
-    def __init__(self, base_directory='./data', input_directory='joined_dataset') -> None:
-        self.base_directory = base_directory
-        self.output_directory = f'{self.base_directory}/complete_dataset'
-        self.input_directory = f'{self.base_directory}/{input_directory}'
-        create_directory_if_not_exists(self.output_directory)
+    def __init__(self, dataset: pd.DataFrame) -> None:
+        self.dataset = dataset
 
     def execute(self):
-        dataset = pd.read_csv(self.input_directory + '/full_dataset.csv')
-        att_with_na_values = list(dataset.columns[dataset.isnull().any()])
+        att_with_na_values = list(self.dataset.columns[self.dataset.isnull().any()])
 
         for att in att_with_na_values:
-            countries = self.get_countries_with_less_than_half_missing_data(dataset, att)
-            dataset = self.fill_missing_data_with_closest_data_mean(dataset, att, countries)
-            dataset = self.fill_missing_data_with_median_or_mean(dataset, att)
+            countries = self.get_countries_with_less_than_half_missing_data(att)
+            self.fill_missing_data_with_closest_data_mean(att, countries)
+            self.fill_missing_data_with_median_or_mean(att)
 
-        dataset.to_csv(self.output_directory + '/complete_dataset.csv', index=False)
+        return self.dataset
 
-    def fill_missing_data_with_closest_data_mean(self, dataset, column_name, countries):
-        df_countries = dataset[dataset['country'].isin(countries) & dataset[column_name].isna()][['country', 'year']]
+    def fill_missing_data_with_closest_data_mean(self, column_name, countries):
+        df_countries = self.dataset[self.dataset['country'].isin(countries) & self.dataset[column_name].isna()][['country', 'year']]
         for country in df_countries.itertuples():
-            before = dataset[(dataset['country'] == country.country) & (dataset['year'] < country.year)][[column_name, 'year']].sort_values(by='year', ascending=False)[column_name].values
-            after = dataset[(dataset['country'] == country.country) & (dataset['year'] > country.year)][[column_name, 'year']].sort_values(by='year', ascending=False)[column_name].values
+            before = self.dataset[(self.dataset['country'] == country.country) & (self.dataset['year'] < country.year)][[column_name, 'year']].sort_values(by='year', ascending=False)[column_name].values
+            after = self.dataset[(self.dataset['country'] == country.country) & (self.dataset['year'] > country.year)][[column_name, 'year']].sort_values(by='year', ascending=False)[column_name].values
             
             total = []
             if(len(before) > 0):
@@ -60,20 +53,18 @@ class MissingData:
             if(len(after) > 0):
                 total.append(after[0])    
 
-            dataset.loc[country.Index, column_name] = np.mean(total)
-        return dataset    
+            self.dataset.loc[country.Index, column_name] = np.mean(total)        
 
-    def fill_missing_data_with_median_or_mean(self, dataset, column_name):
-        mean = dataset[column_name].mean()
-        median = dataset[column_name].median()
+    def fill_missing_data_with_median_or_mean(self, column_name):
+        mean = self.dataset[column_name].mean()
+        median = self.dataset[column_name].median()
         lower_value = min([mean, median])
-        dataset[column_name].fillna(lower_value, inplace=True)
-        return dataset
+        self.dataset[column_name].fillna(lower_value, inplace=True)        
 
-    def get_countries_with_less_than_half_missing_data(self, dataset, column_name):
-        missing_data_countries = dataset[dataset[column_name].isna()]['country'].unique()
-        missing_data_countries_total = dataset[dataset['country'].isin(missing_data_countries)]['country'].value_counts()        
-        by_country = pd.DataFrame([dataset[dataset[column_name].isna()]['country'].value_counts(), missing_data_countries_total]).T
+    def get_countries_with_less_than_half_missing_data(self, column_name):
+        missing_data_countries = self.dataset[self.dataset[column_name].isna()]['country'].unique()
+        missing_data_countries_total = self.dataset[self.dataset['country'].isin(missing_data_countries)]['country'].value_counts()        
+        by_country = pd.DataFrame([self.dataset[self.dataset[column_name].isna()]['country'].value_counts(), missing_data_countries_total]).T
         by_country.columns = ['total_missing_data', 'total_data']
         by_country['tx'] = (by_country['total_missing_data'] / by_country['total_data'])
         return list(by_country.query('tx < 0.5').index)
