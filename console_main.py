@@ -1,4 +1,5 @@
-from services.region_service import RegionService
+from data_combination.data_combination_commands import execute_data_combination
 
-df = RegionService().__merge_kaggle_datasets__()
+df = execute_data_combination()
+
 print(df)

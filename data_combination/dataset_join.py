@@ -1,6 +1,4 @@
 import pandas as pd
-from lib.io_helper import create_directory_if_not_exists
-
 class DatasetsJoin:
     """
     Esta é a quarta etapa da preparação e limpeza iniciais dos dados do Relatório de Felicidade Mundial.
@@ -8,10 +6,10 @@ class DatasetsJoin:
 
     Attributes
     ----------
-    base_directory : str
-        Diretório base onde os datasets são armazenados e os modificados serão salvos.
-    input_directory : str
-        Diretório onde onde estão os datasets preparados para serem juntados.
+    past_data : pd.DataFrame
+        Dados históricos
+    data_2021 : pd.DataFrame
+        Dados de 2021
 
     Methods
     -------
@@ -22,21 +20,17 @@ class DatasetsJoin:
 
     __name__ = 'DatasetsJoin'
 
-    def __init__(self, base_directory='./data', input_directory='affects') -> None:
-        self.base_directory = base_directory
-        self.output_directory = f'{self.base_directory}/joined_dataset'
-        self.input_directory = f'{self.base_directory}/{input_directory}'
-        create_directory_if_not_exists(self.output_directory)
+    def __init__(self, past_data: pd.DataFrame, data_2021: pd.DataFrame) -> None:
+        self.past_data = past_data
+        self.data_2021 = data_2021
 
     def execute(self):
-        past_data = pd.read_csv(self.input_directory + '/HistoricData.csv')
-        data_2021 = pd.read_csv(self.input_directory + '/Data_2021.csv')
-        data_2021['year'] = 2021
+        self.data_2021['year'] = 2021
 
-        columns = data_2021.columns
-        past_data = past_data[columns]
+        columns = self.data_2021.columns
+        self.past_data = self.past_data[columns]
 
-        datasets = [past_data, data_2021]
+        datasets = [self.past_data, self.data_2021]
 
         full_dataset = pd.concat(datasets)
-        full_dataset.to_csv(self.output_directory + '/full_dataset.csv', index=False)
+        return full_dataset

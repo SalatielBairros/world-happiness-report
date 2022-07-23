@@ -28,8 +28,12 @@ class RegionJoin:
     def __init__(self, past_data: pd.DataFrame, data_2021: pd.DataFrame) -> None:
         self.past_data = past_data
         self.data_2021 = data_2021
+        self.region_datasets = []
         
-    def get_region_datasets(self):        
+    def get_region_datasets(self):
+        if(len(self.region_datasets) > 0):
+            return self.region_datasets
+
         kaggle_datasets =  RegionService().get_kaggle_regions()
         
         df_regions = self.data_2021[['country', 'region']].copy()
@@ -42,7 +46,8 @@ class RegionJoin:
         df_kaggle_regions['Region'] = list(df_kaggle_regions['Country'].str.lower())
         kaggle_regions = df_kaggle_regions.set_index('Country').to_dict('dict')['Region']        
 
-        return [regions, kaggle_regions]
+        self.region_datasets = [regions, kaggle_regions]
+        return self.region_datasets
 
     def get_region(self, country):
         if(country.lower() in ['cuba', 'guyana']):
