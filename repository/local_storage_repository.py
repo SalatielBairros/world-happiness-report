@@ -6,6 +6,7 @@ class LocalStorageRepository:
     def __init__(self) -> None:
         self.__create_directories__()
         self.joined_datasets_path = './data/processed/joined_dataset.csv'
+        self.prepared_datasets_path = './data/processed/prepared_dataset.csv'
 
     def get_original_historic_data(self) -> pd.DataFrame:
         return pd.read_excel('./data/original/HistoricData.xls')
@@ -16,9 +17,17 @@ class LocalStorageRepository:
     def save_joined_dataset(self, dataset: pd.DataFrame):
         dataset.to_csv(self.joined_datasets_path, index=False)
 
+    def save_prepared_dataset(self, dataset: pd.DataFrame):
+        dataset.to_csv(self.prepared_datasets_path, index=False)
+
     def get_joined_dataset(self) -> pd.DataFrame:
         if(path.exists(self.joined_datasets_path)):
             return pd.read_csv(self.joined_datasets_path)
+        return None
+
+    def get_prepared_dataset(self) -> pd.DataFrame:
+        if(path.exists(self.prepared_datasets_path)):
+            return pd.read_csv(self.prepared_datasets_path)
         return None
 
     def __create_directories__(self):
