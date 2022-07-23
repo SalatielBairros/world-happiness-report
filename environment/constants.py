@@ -4,6 +4,4 @@ class DatasetConstants:
 
 class EnvironmentVariables:
     SEED = 42
-    ORIGINAL_HISTORIC_DATA_URL = "OriginalHistoricDataUrl"
-    DATA_2021_URL = "Data2021Url"
-    KAGGLE_REGIONS = "KaggleRegions"
+    ORIGINAL_URLS = ["OriginalHistoricDataUrl", 'Data2021Url', 'Kaggle2015Url', 'Kaggle2016Url', 'CountriesUsaDatabaseUrl']

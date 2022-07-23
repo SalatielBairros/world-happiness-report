@@ -20,24 +20,14 @@ class WhrDataIngestion:
         return execute_feature_engineering()
 
     def download_data(self):
-        historic_data_url = env[EnvironmentVariables.ORIGINAL_HISTORIC_DATA_URL]
-        data_2021_url = env[EnvironmentVariables.DATA_2021_URL]
-        kaggle_regions_url = env[EnvironmentVariables.KAGGLE_REGIONS]
+        urls = [env[env_url_var] for env_url_var in EnvironmentVariables.ORIGINAL_URLS]
 
-        historic_data_filename = "HistoricData.xls"
-        data_2021_filename = "Data_2021.xls"
-
-        if(not self.__has_ingested_file__(historic_data_filename)):
-            logging.info("Ingesting historic data...")
-            wget.download(historic_data_url, f'{self.original_path}/{historic_data_filename}')
-
-        if(not self.__has_ingested_file__(data_2021_filename)):
-            logging.info("Ingesting 2021 data...")
-            wget.download(data_2021_url, f'{self.original_path}/{data_2021_filename}')
-
-        if(not path.exists('./data/reference/kaggle_region_datasets.csv')):
-            logging.info("Ingesting Kaggle Regions...")
-            wget.download(kaggle_regions_url, './data/reference/kaggle_region_datasets.csv')
+        for url in urls:
+            filename = url.split('/')[-1]
+            if(not self.__has_ingested_file__(filename)):
+                logging.info(f"Ingesting {filename}...")
+                wget.download(url, f'{self.original_path}/{filename}')
+                logging.info(f"Ingested {filename}")
 
     def __has_ingested_file__(self, filename: str):
         return path.exists(f'./data/original/{filename}')
@@ -45,4 +35,3 @@ class WhrDataIngestion:
     def __create_directories__(self):
         create_directory_if_not_exists('./data')
         create_directory_if_not_exists('./data/original')
-        create_directory_if_not_exists('./data/reference')
