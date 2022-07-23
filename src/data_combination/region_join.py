@@ -25,12 +25,9 @@ class RegionJoin:
 
     __name__ = 'RegionJoin'
 
-    def __init__(self, base_directory = './data', input_directory='cleaned_columns') -> None:
-        self.base_directory = base_directory
-        self.output_directory = f'{self.base_directory}/with_region'
-        self.input_directory = f'{self.base_directory}/{input_directory}'
-        self.kaggle_directory = f'{self.base_directory}/kaggle'
-        create_directory_if_not_exists(self.output_directory)
+    def __init__(self, past_data: pd.DataFrame, data_2021: pd.DataFrame) -> None:
+        self.past_data = past_data
+        self.data_2021 = data_2021
         
     def get_region_datasets(self):        
         data_2021 = pd.read_csv(self.input_directory + '/Data_2021.csv')
