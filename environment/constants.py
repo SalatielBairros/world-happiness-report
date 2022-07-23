@@ -3,4 +3,4 @@ class DatasetConstants:
     DATA_2021_COLUMNS = ['country', 'region', 'score', 'std_score', 'upperwhisker', 'lowerwhisker', 'gdp', 'social_support', 'hle', 'freedom', 'generosity', 'corruption']
 
 class EnvironmentVariables:
-    Seed = 42                  
+    SEED = 42                  

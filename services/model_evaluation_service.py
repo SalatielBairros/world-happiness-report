@@ -2,15 +2,23 @@ import pandas as pd
 from app.entities.response.model_evaluation_response import ModelEvaluationResponse
 from sklearn import metrics
 import numpy as np
+from environment.constants import EnvironmentVariables
 from models.base_learning_model import BaseLearningModel
+from repository.local_storage_repository import LocalStorageRepository
+from eli5.sklearn import PermutationImportance
 
 class ModelEvaluationService:
     def __init__(self, model: BaseLearningModel) -> None:
-        self.columns_to_drop_x = ['country', 'region', 'score', 'year', 'cat_country']
+        self.columns_to_drop_x = ['country', 'region', 'score', 'year', 'cat_country', 'rounded_score', 'scaled_hle']
         self.model = model
+        self.repository = LocalStorageRepository()
 
-    def evaluate(self, dataset: pd.DataFrame):
-        return self.__year_cross_validation__(dataset, self.model)        
+    def evaluate(self) -> list[ModelEvaluationResponse]:
+        dataset = self.repository.get_processed_dataset()
+        if(dataset is None):
+            raise Exception('Dataset is empty')
+
+        return self.__year_cross_validation__(dataset)        
 
     def __get_metrics__(self, y_real, y_pred, x_test, model, year) -> ModelEvaluationResponse:
         r2 = metrics.r2_score(y_real, y_pred)
@@ -20,18 +28,19 @@ class ModelEvaluationService:
         mean_squared_error = metrics.mean_squared_error(y_real, y_pred)
         sqrt_mse = np.sqrt(mean_squared_error)
 
-        # perm = PermutationImportance(model, random_state=EnvironmentVariables.SEED).fit(x_test, y_real)
-        # importances = list(zip(self.columns, np.round(perm.feature_importances_, 2)))
+        perm = PermutationImportance(model, random_state=EnvironmentVariables.SEED).fit(x_test, y_real)
+        importances = list(zip(x_test.columns, np.round(perm.feature_importances_, 2)))
         
         return ModelEvaluationResponse(
             year=year,
             r2=r2,
             adjusted_r2=r2_adj,
             mean_squared_error=mean_squared_error,
-            sqrt_mean_squared_error=sqrt_mse
+            sqrt_mean_squared_error=sqrt_mse,
+            importances=importances
         )
 
-    def __year_cross_validation__(self, dataset: pd.DataFrame, model):
+    def __year_cross_validation__(self, dataset: pd.DataFrame):
         current_year = dataset['year'].min()
         last_year = dataset['year'].max()
         years = list(range(current_year, last_year+1))
@@ -49,3 +58,5 @@ class ModelEvaluationService:
             result = self.__get_metrics__(y_test, model.predict(X_test), X_test, model, year)
         
             results.append(result)
+
+        return results

@@ -6,3 +6,4 @@ class ModelEvaluationResponse(BaseModel):
     adjusted_r2: float
     mean_squared_error: float
     sqrt_mean_squared_error: float
+    importances: list
