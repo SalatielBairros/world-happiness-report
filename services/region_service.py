@@ -4,7 +4,7 @@ from lib.memo_cache import memo
 
 class RegionService:
     def __init__(self):
-        self.kaggle_region_dataset = './data/reference/region/kaggle_region_datasets.csv'
+        self.kaggle_region_dataset = './data/processed/kaggle_region_datasets.csv'
 
         self.regions_map = {
             'central and eastern europe': 'eastern europe',
@@ -35,7 +35,7 @@ class RegionService:
 
     @memo
     def get_db_countries(self):
-        countries_usa_database = pd.read_csv('./data/processed/countries_usa_database.csv')
+        countries_usa_database = pd.read_csv('./data/original/countries_usa_database.csv')
 
         countries = countries_usa_database[['Country', 'Region']].dropna()
         countries.columns = ['country', 'region']
