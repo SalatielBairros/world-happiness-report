@@ -11,10 +11,10 @@ class Affects:
 
     Attributes
     ----------
-    base_directory : str
-        Diretório base onde os datasets são armazenados e os modificados serão salvos.
-    input_directory : str
-        Diretório onde os datasets de origem dos dados. Eles devem estar já com as colunas normalizadas.
+    past_data : pd.DataFrame
+        Dados históricos
+    data_2021 : pd.DataFrame
+        Dados de 2021
 
     Methods
     -------
@@ -25,13 +25,9 @@ class Affects:
 
     __name__ = 'Affects'
 
-    def __init__(self, base_directory='./data', input_directory='with_region') -> None:
-        self.base_directory = base_directory
-        self.output_directory = f'{self.base_directory}/affects'
-        self.input_directory = f'{self.base_directory}/{input_directory}'
-        create_directory_if_not_exists(self.output_directory)
-        self.past_data = pd.read_csv(self.input_directory + '/HistoricData.csv')
-        self.data_2021 = pd.read_csv(self.input_directory + '/Data_2021.csv')
+    def __init__(self, past_data: pd.DataFrame, data_2021: pd.DataFrame) -> None:
+        self.past_data = past_data
+        self.data_2021 = data_2021
         self.retroactive_positive_affects = []
         self.retroactive_negative_affects = []        
 
@@ -79,6 +75,5 @@ class Affects:
         self.data_2021['positive_affect'] = self.data_2021['country'].apply(self.get_positive_affects)
         self.data_2021['negative_affect'] = self.data_2021['country'].apply(self.get_negative_affects)
 
-        self.past_data.to_csv(self.output_directory + '/HistoricData.csv', index=False)
-        self.data_2021.to_csv(self.output_directory + '/Data_2021.csv', index=False)
+        return (self.past_data, self.data_2021)
         

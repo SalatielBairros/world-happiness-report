@@ -7,15 +7,15 @@ class RegionJoin:
     Ela é necessária pois apenas os dados de 2021 são preenchidos com a região no mundo em que um país se encontra. 
     Para resolver isso foi realizado o preenchimento dos dados históricos baseado na região informada nos dados do ano de 2021.
     Contudo, nem todos os países do mundo possuem a informação de região no ano de 2021. 
-    Para resolver isso foram utilizadas bases do Kaggle de 2015 e 2016 que continham esses dados.
-    Os datasets resultantes são salvos em uma pasta chamada 'with_region' dentro da pasta do diretório informado no construtor.
+    Para resolver isso foram utilizadas bases do Kaggle de 2015 e 2016 que continham esses dados.    
+
     Attributes
     ----------
-    base_directory : str
-        Diretório base onde os datasets são armazenados e os modificados serão salvos.
-    input_directory : str
-        Diretório onde os datasets de origem estão armazenados. Os datasets de origem devem já estar com as colunas normalizadas.
-
+    past_data : pd.DataFrame
+        Dados históricos
+    data_2021 : pd.DataFrame
+        Dados de 2021
+        
     Methods
     -------
     execute()
