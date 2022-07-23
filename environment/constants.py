@@ -3,4 +3,7 @@ class DatasetConstants:
     DATA_2021_COLUMNS = ['country', 'region', 'score', 'std_score', 'upperwhisker', 'lowerwhisker', 'gdp', 'social_support', 'hle', 'freedom', 'generosity', 'corruption']
 
 class EnvironmentVariables:
-    SEED = 42                  
+    SEED = 42
+    ORIGINAL_HISTORIC_DATA_URL = "OriginalHistoricDataUrl"
+    DATA_2021_URL = "Data2021Url"
+    KAGGLE_REGIONS = "KaggleRegions"
