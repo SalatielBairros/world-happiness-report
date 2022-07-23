@@ -18,7 +18,7 @@ Um modelo de regressão do nível de felicidade no mundo. Utiliza os dados do [W
 
 ## ARQUITETURA DO PROJETO
 
-[Estrutura de pastas](https://github.com/SalatielBairros/world-happiness-report/docs/Architecture.md)
+[Estrutura de pastas](https://github.com/SalatielBairros/world-happiness-report/blob/main/docs/Architecture.md)
 
 ## ACESSO AO PROJETO
 
@@ -30,12 +30,15 @@ Na raiz do projeto o seguinte comando deve ser executado para a preparação do 
 # Version: 3.8
 python3 src/data_preparation_commands.py
 ```
+Após o dataset se gerado ele pode ser consumido pela API, para iniciar devemos digitar o seguinte comando tambem na raiz do projeto.
 
-Para iniciar a API
+Obs: deve-se ter o Docker e Docker compose instalado.
 
 ```shell
-sudo docker-compose up
+docker-compose up
 ```
+
+A documentação da API e gerada de maneira automática com o Swagger em `http://localhost:8002/docs`
 
 ## TECNOLOGIAS UTILIZADAS
 
