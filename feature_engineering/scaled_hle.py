@@ -8,10 +8,8 @@ class ScaledHle():
 
     Attributes
     ----------
-    output_directory : str
-        Diretório base onde os datasets são armazenados e os modificados serão salvos.
-    input_file : str
-        Arquivo do dataset de origem
+    dataset : pd.DataFrame
+        Dataset a ser modificado
 
     Methods
     -------
@@ -22,16 +20,16 @@ class ScaledHle():
 
     __name__ = 'ScaledHle'
 
-    def __init__(self, output_directory = './data/feature_engineering', input_file='./data/feature_engineering/rounded_score.csv'):    
-        self.output_directory = output_directory
-        self.input_file = input_file
+    def __init__(self, dataset: pd.DataFrame):    
+        self.dataset = dataset
 
-    def execute(self):
-        dataset = pd.read_csv(self.input_file)
-        dataset['scaled_hle'] = [self.min_max_scaler(20, 90, x) for x in dataset['hle']]
-        dataset.to_csv(self.output_directory + '/scaled_hle.csv', index=False)
+    def execute(self):        
+        self.dataset['scaled_hle'] = [self.min_max_scaler(x) for x in self.dataset['hle']]
+        return self.dataset
 
-    def min_max_scaler(self, min, max, x):
+    def min_max_scaler(self, x):
+        min = 20
+        max = 90
         X_std = (x - min) / (max - min)
         X_scaled = X_std * 1
         return X_scaled
