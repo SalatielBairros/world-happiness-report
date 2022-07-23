@@ -1,9 +1,17 @@
 import pandas as pd
 from os import path
+from lib.memo_cache import memo
 
 class RegionService:
     def __init__(self):
         self.kaggle_region_dataset = './data/reference/region/kaggle_region_datasets.csv'
+
+        self.regions_map = {
+            'central and eastern europe': 'eastern europe',
+            'southeast asia': 'asia',
+            'middle east and north africa': 'near east',
+            'somaliland region': 'sub-saharan africa'
+        }
 
     def __merge_kaggle_datasets__(self):
         df_2015 = pd.read_csv('./data/reference/region/kaggle_2015.csv')[['Country', 'Region']]
@@ -24,3 +32,39 @@ class RegionService:
 
     def __exists_kaggle_region_datasets__(self):
         return path.exists('./data/reference/region/kaggle_2015.csv') and path.exists('./data/reference/region/kaggle_2016.csv')
+
+    @memo
+    def get_db_countries(self):
+        countries_usa_database = pd.read_csv('./data/reference/region/countries_usa_database.csv')
+
+        countries = countries_usa_database[['Country', 'Region']].dropna()
+        countries.columns = ['country', 'region']
+        
+        countries['region'] = countries['region'].str.split(',').str[0].str.split(
+            '(').str[0].str.strip().str.lower().str.replace('&', 'and')
+
+        countries['country'] = countries['country'].str.split(',').str[0].str.split(
+            '(').str[0].str.strip().str.lower().str.replace('&', 'and').str.replace('rep.', 'republic', regex=False)
+
+        countries.drop_duplicates(inplace=True)
+        countries.set_index('country', inplace=True)
+        return countries
+
+    
+    def get_region(self, country: str, region: str):
+        db_countries = self.get_db_countries()
+
+        regions = db_countries['region']
+        if(region in list(regions)):
+            return region
+        if(country in db_countries.index):
+            return regions[country]
+        for uc in db_countries.index:
+            if(country.startswith(uc)):
+                return regions[uc]
+            if(uc in country.split(' ')):
+                return regions[uc]
+        if(region in self.regions_map):
+            return self.regions_map[region]
+
+        return 'Other'
