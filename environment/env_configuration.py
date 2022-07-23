@@ -1,6 +1,9 @@
 from os import environ as env, path, mkdir
 import json
 import logging
+import numpy as np
+import pandas as pd
+from environment.constants import EnvironmentVariables
 
 # def configure_environment_from_file(file_path = './appsettings.json'):
 #     if(path.exists(file_path)):
@@ -15,6 +18,14 @@ def configurate_logging():
                         datefmt="%H:%M:%S")   
     logging.info('Logging configurated')
 
-def preparing_environment():
+def configure_pandas():
+    pd.set_option('mode.chained_assignment', None)
+
+def configure_numpy_seed():
+    np.random.seed(EnvironmentVariables.SEED)
+
+def prepare_environment():
     configurate_logging()    
+    configure_pandas()
+    configure_numpy_seed()
     # configure_environment_from_file() 

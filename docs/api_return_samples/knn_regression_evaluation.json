@@ -1,0 +1,767 @@
+[
+    {
+        "year": 2005,
+        "r2": 0.6087923840942551,
+        "adjusted_r2": 0.4016824697912137,
+        "mean_squared_error": 0.3182604740444305,
+        "sqrt_mean_squared_error": 0.5641457914798537,
+        "importances": [
+            [
+                "gdp",
+                0.32
+            ],
+            [
+                "social_support",
+                -0.0
+            ],
+            [
+                "hle",
+                0.97
+            ],
+            [
+                "freedom",
+                0.03
+            ],
+            [
+                "generosity",
+                0.0
+            ],
+            [
+                "corruption",
+                0.03
+            ],
+            [
+                "positive_affect",
+                0.01
+            ],
+            [
+                "negative_affect",
+                0.01
+            ],
+            [
+                "cat_region",
+                0.32
+            ]
+        ]
+    },
+    {
+        "year": 2006,
+        "r2": 0.7761550040876244,
+        "adjusted_r2": 0.7506536754393791,
+        "mean_squared_error": 0.265165775829227,
+        "sqrt_mean_squared_error": 0.5149424975948548,
+        "importances": [
+            [
+                "gdp",
+                0.31
+            ],
+            [
+                "social_support",
+                0.0
+            ],
+            [
+                "hle",
+                0.83
+            ],
+            [
+                "freedom",
+                0.0
+            ],
+            [
+                "generosity",
+                0.0
+            ],
+            [
+                "corruption",
+                0.01
+            ],
+            [
+                "positive_affect",
+                -0.0
+            ],
+            [
+                "negative_affect",
+                0.0
+            ],
+            [
+                "cat_region",
+                0.24
+            ]
+        ]
+    },
+    {
+        "year": 2007,
+        "r2": 0.7768732947431917,
+        "adjusted_r2": 0.755045682272417,
+        "mean_squared_error": 0.24261256198937722,
+        "sqrt_mean_squared_error": 0.4925571662146204,
+        "importances": [
+            [
+                "gdp",
+                0.32
+            ],
+            [
+                "social_support",
+                0.0
+            ],
+            [
+                "hle",
+                1.07
+            ],
+            [
+                "freedom",
+                0.0
+            ],
+            [
+                "generosity",
+                -0.01
+            ],
+            [
+                "corruption",
+                0.02
+            ],
+            [
+                "positive_affect",
+                0.0
+            ],
+            [
+                "negative_affect",
+                0.0
+            ],
+            [
+                "cat_region",
+                0.39
+            ]
+        ]
+    },
+    {
+        "year": 2008,
+        "r2": 0.8711917580997705,
+        "adjusted_r2": 0.8595990163287498,
+        "mean_squared_error": 0.17455372609915068,
+        "sqrt_mean_squared_error": 0.41779627343856324,
+        "importances": [
+            [
+                "gdp",
+                0.38
+            ],
+            [
+                "social_support",
+                0.0
+            ],
+            [
+                "hle",
+                1.03
+            ],
+            [
+                "freedom",
+                0.0
+            ],
+            [
+                "generosity",
+                -0.0
+            ],
+            [
+                "corruption",
+                0.03
+            ],
+            [
+                "positive_affect",
+                -0.01
+            ],
+            [
+                "negative_affect",
+                -0.0
+            ],
+            [
+                "cat_region",
+                0.28
+            ]
+        ]
+    },
+    {
+        "year": 2009,
+        "r2": 0.8074731618902302,
+        "adjusted_r2": 0.7908121855153463,
+        "mean_squared_error": 0.20233125153713585,
+        "sqrt_mean_squared_error": 0.4498124626298563,
+        "importances": [
+            [
+                "gdp",
+                0.37
+            ],
+            [
+                "social_support",
+                -0.0
+            ],
+            [
+                "hle",
+                0.98
+            ],
+            [
+                "freedom",
+                0.01
+            ],
+            [
+                "generosity",
+                0.01
+            ],
+            [
+                "corruption",
+                0.02
+            ],
+            [
+                "positive_affect",
+                0.0
+            ],
+            [
+                "negative_affect",
+                0.01
+            ],
+            [
+                "cat_region",
+                0.42
+            ]
+        ]
+    },
+    {
+        "year": 2010,
+        "r2": 0.8756290860802641,
+        "adjusted_r2": 0.8658103297181797,
+        "mean_squared_error": 0.15630839019980253,
+        "sqrt_mean_squared_error": 0.395358559031928,
+        "importances": [
+            [
+                "gdp",
+                0.38
+            ],
+            [
+                "social_support",
+                0.01
+            ],
+            [
+                "hle",
+                1.1
+            ],
+            [
+                "freedom",
+                0.01
+            ],
+            [
+                "generosity",
+                0.0
+            ],
+            [
+                "corruption",
+                0.01
+            ],
+            [
+                "positive_affect",
+                0.01
+            ],
+            [
+                "negative_affect",
+                0.0
+            ],
+            [
+                "cat_region",
+                0.34
+            ]
+        ]
+    },
+    {
+        "year": 2011,
+        "r2": 0.8319110780365225,
+        "adjusted_r2": 0.8207875464359983,
+        "mean_squared_error": 0.19616048874334507,
+        "sqrt_mean_squared_error": 0.442900088895165,
+        "importances": [
+            [
+                "gdp",
+                0.34
+            ],
+            [
+                "social_support",
+                0.01
+            ],
+            [
+                "hle",
+                1.13
+            ],
+            [
+                "freedom",
+                0.01
+            ],
+            [
+                "generosity",
+                0.01
+            ],
+            [
+                "corruption",
+                0.02
+            ],
+            [
+                "positive_affect",
+                0.01
+            ],
+            [
+                "negative_affect",
+                0.01
+            ],
+            [
+                "cat_region",
+                0.33
+            ]
+        ]
+    },
+    {
+        "year": 2012,
+        "r2": 0.8618626498930761,
+        "adjusted_r2": 0.8524441942039677,
+        "mean_squared_error": 0.17101373170654585,
+        "sqrt_mean_squared_error": 0.41353806560768486,
+        "importances": [
+            [
+                "gdp",
+                0.34
+            ],
+            [
+                "social_support",
+                0.01
+            ],
+            [
+                "hle",
+                1.06
+            ],
+            [
+                "freedom",
+                0.01
+            ],
+            [
+                "generosity",
+                0.0
+            ],
+            [
+                "corruption",
+                0.03
+            ],
+            [
+                "positive_affect",
+                0.01
+            ],
+            [
+                "negative_affect",
+                0.0
+            ],
+            [
+                "cat_region",
+                0.27
+            ]
+        ]
+    },
+    {
+        "year": 2013,
+        "r2": 0.8657935726737436,
+        "adjusted_r2": 0.8562828809734577,
+        "mean_squared_error": 0.18574644285312833,
+        "sqrt_mean_squared_error": 0.4309831120277549,
+        "importances": [
+            [
+                "gdp",
+                0.27
+            ],
+            [
+                "social_support",
+                -0.0
+            ],
+            [
+                "hle",
+                1.01
+            ],
+            [
+                "freedom",
+                -0.0
+            ],
+            [
+                "generosity",
+                0.01
+            ],
+            [
+                "corruption",
+                0.01
+            ],
+            [
+                "positive_affect",
+                0.0
+            ],
+            [
+                "negative_affect",
+                -0.0
+            ],
+            [
+                "cat_region",
+                0.3
+            ]
+        ]
+    },
+    {
+        "year": 2014,
+        "r2": 0.8712210761224964,
+        "adjusted_r2": 0.8626358145306628,
+        "mean_squared_error": 0.17076774510624634,
+        "sqrt_mean_squared_error": 0.41324054146011174,
+        "importances": [
+            [
+                "gdp",
+                0.29
+            ],
+            [
+                "social_support",
+                0.02
+            ],
+            [
+                "hle",
+                1.01
+            ],
+            [
+                "freedom",
+                0.01
+            ],
+            [
+                "generosity",
+                0.02
+            ],
+            [
+                "corruption",
+                0.02
+            ],
+            [
+                "positive_affect",
+                0.0
+            ],
+            [
+                "negative_affect",
+                0.01
+            ],
+            [
+                "cat_region",
+                0.28
+            ]
+        ]
+    },
+    {
+        "year": 2015,
+        "r2": 0.8600657769912627,
+        "adjusted_r2": 0.8505965438553331,
+        "mean_squared_error": 0.17309617054343765,
+        "sqrt_mean_squared_error": 0.4160482791016418,
+        "importances": [
+            [
+                "gdp",
+                0.29
+            ],
+            [
+                "social_support",
+                0.01
+            ],
+            [
+                "hle",
+                1.1
+            ],
+            [
+                "freedom",
+                0.01
+            ],
+            [
+                "generosity",
+                0.02
+            ],
+            [
+                "corruption",
+                0.03
+            ],
+            [
+                "positive_affect",
+                0.01
+            ],
+            [
+                "negative_affect",
+                0.01
+            ],
+            [
+                "cat_region",
+                0.28
+            ]
+        ]
+    },
+    {
+        "year": 2016,
+        "r2": 0.8386059996965454,
+        "adjusted_r2": 0.827601863312219,
+        "mean_squared_error": 0.20849263306282712,
+        "sqrt_mean_squared_error": 0.45660993535273314,
+        "importances": [
+            [
+                "gdp",
+                0.28
+            ],
+            [
+                "social_support",
+                0.01
+            ],
+            [
+                "hle",
+                1.15
+            ],
+            [
+                "freedom",
+                0.0
+            ],
+            [
+                "generosity",
+                -0.0
+            ],
+            [
+                "corruption",
+                0.01
+            ],
+            [
+                "positive_affect",
+                -0.0
+            ],
+            [
+                "negative_affect",
+                -0.0
+            ],
+            [
+                "cat_region",
+                0.24
+            ]
+        ]
+    },
+    {
+        "year": 2017,
+        "r2": 0.8732393762454393,
+        "adjusted_r2": 0.8649120359987894,
+        "mean_squared_error": 0.1638585674521224,
+        "sqrt_mean_squared_error": 0.4047944755701619,
+        "importances": [
+            [
+                "gdp",
+                0.33
+            ],
+            [
+                "social_support",
+                0.01
+            ],
+            [
+                "hle",
+                1.16
+            ],
+            [
+                "freedom",
+                0.01
+            ],
+            [
+                "generosity",
+                0.02
+            ],
+            [
+                "corruption",
+                0.03
+            ],
+            [
+                "positive_affect",
+                0.01
+            ],
+            [
+                "negative_affect",
+                0.01
+            ],
+            [
+                "cat_region",
+                0.33
+            ]
+        ]
+    },
+    {
+        "year": 2018,
+        "r2": 0.862507552599413,
+        "adjusted_r2": 0.853133067549373,
+        "mean_squared_error": 0.16027530462733472,
+        "sqrt_mean_squared_error": 0.40034398287889217,
+        "importances": [
+            [
+                "gdp",
+                0.36
+            ],
+            [
+                "social_support",
+                0.01
+            ],
+            [
+                "hle",
+                1.19
+            ],
+            [
+                "freedom",
+                0.01
+            ],
+            [
+                "generosity",
+                0.01
+            ],
+            [
+                "corruption",
+                0.02
+            ],
+            [
+                "positive_affect",
+                0.0
+            ],
+            [
+                "negative_affect",
+                0.01
+            ],
+            [
+                "cat_region",
+                0.35
+            ]
+        ]
+    },
+    {
+        "year": 2019,
+        "r2": 0.8490017520776931,
+        "adjusted_r2": 0.838860078709777,
+        "mean_squared_error": 0.18538240620191626,
+        "sqrt_mean_squared_error": 0.4305605720475532,
+        "importances": [
+            [
+                "gdp",
+                0.34
+            ],
+            [
+                "social_support",
+                0.01
+            ],
+            [
+                "hle",
+                1.12
+            ],
+            [
+                "freedom",
+                0.01
+            ],
+            [
+                "generosity",
+                0.0
+            ],
+            [
+                "corruption",
+                0.01
+            ],
+            [
+                "positive_affect",
+                0.01
+            ],
+            [
+                "negative_affect",
+                0.0
+            ],
+            [
+                "cat_region",
+                0.32
+            ]
+        ]
+    },
+    {
+        "year": 2020,
+        "r2": 0.8214638004651741,
+        "adjusted_r2": 0.8025599675732513,
+        "mean_squared_error": 0.16920391574559446,
+        "sqrt_mean_squared_error": 0.4113440357481733,
+        "importances": [
+            [
+                "gdp",
+                0.46
+            ],
+            [
+                "social_support",
+                0.01
+            ],
+            [
+                "hle",
+                1.22
+            ],
+            [
+                "freedom",
+                -0.01
+            ],
+            [
+                "generosity",
+                0.02
+            ],
+            [
+                "corruption",
+                0.03
+            ],
+            [
+                "positive_affect",
+                0.0
+            ],
+            [
+                "negative_affect",
+                0.0
+            ],
+            [
+                "cat_region",
+                0.35
+            ]
+        ]
+    },
+    {
+        "year": 2021,
+        "r2": 0.8891277612061117,
+        "adjusted_r2": 0.8819489831547088,
+        "mean_squared_error": 0.12701184016846864,
+        "sqrt_mean_squared_error": 0.3563872053938927,
+        "importances": [
+            [
+                "gdp",
+                0.3
+            ],
+            [
+                "social_support",
+                -0.0
+            ],
+            [
+                "hle",
+                1.26
+            ],
+            [
+                "freedom",
+                0.0
+            ],
+            [
+                "generosity",
+                0.02
+            ],
+            [
+                "corruption",
+                0.01
+            ],
+            [
+                "positive_affect",
+                0.01
+            ],
+            [
+                "negative_affect",
+                -0.0
+            ],
+            [
+                "cat_region",
+                0.36
+            ]
+        ]
+    }
+]
