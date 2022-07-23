@@ -1,0 +1,12 @@
+version: '3.5'
+
+services:
+  service:
+    image: tiangolo/uvicorn-gunicorn-fastapi:python3.9
+    # environment:
+    volumes:
+      - ./service:/app/
+      - ./sh:/usr/local/sh/
+    command: /bin/sh '/usr/local/sh/service.sh'
+    ports:
+      - '8002:80'

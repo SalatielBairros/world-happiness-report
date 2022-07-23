@@ -23,9 +23,15 @@ class RegionCleaning:
 
     __name__ = 'RegionCleaning'
 
-    def __init__(self, base_directory='./data', input_directory='complete_dataset') -> None:
+    def __init__(
+        self, base_directory='./data',
+        api_base_directory='./service/app/api/datasets',
+        input_directory='complete_dataset'
+    ) -> None:
         self.base_directory = base_directory
+        self.api_base_directory = api_base_directory
         self.output_directory = f'{self.base_directory}/complete_dataset_region'
+        self.api_base_directory = f'{self.api_base_directory}'
         self.input_directory = f'{self.base_directory}/{input_directory}'
         self.kaggle_directory = f'{self.base_directory}/kaggle'
         create_directory_if_not_exists(self.output_directory)
@@ -81,3 +87,5 @@ class RegionCleaning:
 
         dataset.to_csv(
             f'{self.output_directory}/complete_dataset_region.csv', index=False)
+        dataset.to_csv(
+            f'{self.api_base_directory}/complete_dataset_region.csv', index=False)

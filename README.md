@@ -22,13 +22,14 @@ Um modelo de regressão do nível de felicidade no mundo. Utiliza os dados do [W
 
 ## ACESSO AO PROJETO
 
+>Nota: O container da API deve estar parado.
+
 Na raiz do projeto o seguinte comando deve ser executado para a preparação do dataset:
 
 ```shell
 # Version: 3.8
 python3 src/data_preparation_commands.py
 ```
-
 Após o dataset se gerado ele pode ser consumido pela API, para iniciar devemos digitar o seguinte comando tambem na raiz do projeto.
 
 Obs: deve-se ter o Docker e Docker compose instalado.
