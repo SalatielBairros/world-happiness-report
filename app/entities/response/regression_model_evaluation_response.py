@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-class ModelEvaluationResponse(BaseModel):
+class RegressionModelEvaluationResponse(BaseModel):
     year: int
     r2: float
     adjusted_r2: float
