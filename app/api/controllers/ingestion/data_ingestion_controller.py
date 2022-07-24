@@ -4,8 +4,8 @@ import json
 
 router = APIRouter(prefix="/data-ingestion", tags=["Data ingestion"])
 
-@router.get("/ingest")
+@router.post("/ingest")
 def evaluate_model():
     ingestor = WhrDataIngestion()
     ingested_data = ingestor.ingest()
-    return json.loads(ingested_data.to_dict(orient="records"))
+    return ingested_data.to_dict(orient="records")

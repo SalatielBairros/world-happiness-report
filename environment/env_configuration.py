@@ -12,6 +12,9 @@ def configure_environment_from_file(file_path = './appsettings.json'):
             configurations = json.load(file)
             env["OriginalHistoricDataUrl"] = configurations["OriginalHistoricDataUrl"]
             env["Data2021Url"] = configurations["Data2021Url"]
+            env["Kaggle2015Url"] = configurations["Kaggle2015Url"]
+            env["Kaggle2016Url"] = configurations["Kaggle2016Url"]
+            env["CountriesUsaDatabaseUrl"] = configurations["CountriesUsaDatabaseUrl"]
 
 def configurate_logging():
     logging.basicConfig(format="%(asctime)s: %(message)s",
