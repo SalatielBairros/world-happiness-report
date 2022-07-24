@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # pip install /app
-pip install -r /app/requirements.txt
+pip install -r requirements.txt
 
 # RUN LOCAL:
 /start-reload.sh
