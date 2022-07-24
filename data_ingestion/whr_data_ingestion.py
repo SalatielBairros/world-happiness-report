@@ -5,6 +5,7 @@ import wget
 from data_combination.data_combination_commands import execute_data_combination
 from data_preparation.data_preparation_commands import execute_data_preparation
 from feature_engineering.feature_engineering_commands import execute_feature_engineering
+from data_augmentation.data_augmentation_executor import execute_data_augmentation
 import pandas as pd
 from lib.io_helper import create_directory_if_not_exists
 
@@ -17,7 +18,9 @@ class WhrDataIngestion:
         self.download_data() 
         _ = execute_data_combination()
         _ = execute_data_preparation()
-        return execute_feature_engineering()
+        prepared_dataset = execute_feature_engineering()
+        _ = execute_data_augmentation()
+        return prepared_dataset        
 
     def download_data(self):
         urls = [env[env_url_var] for env_url_var in EnvironmentVariables.ORIGINAL_URLS]

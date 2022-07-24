@@ -8,6 +8,8 @@ class LocalStorageRepository:
         self.joined_datasets_path = './data/processed/joined_dataset.csv'
         self.prepared_datasets_path = './data/processed/prepared_dataset.csv'
         self.processed_datasets_path = './data/processed/processed_dataset.csv'
+        self.validation_datasets_path = './data/processed/validation_dataset.csv'
+        self.augmented_datasets_path = './data/processed/augmented_dataset.csv'
 
     def get_original_historic_data(self) -> pd.DataFrame:
         return pd.read_excel('./data/original/HistoricData.xls')
@@ -24,6 +26,12 @@ class LocalStorageRepository:
     def save_processed_dataset(self, dataset: pd.DataFrame):
         dataset.to_csv(self.processed_datasets_path, index=False)
 
+    def save_validation_dataset(self, dataset: pd.DataFrame):
+        dataset.to_csv(self.validation_datasets_path, index=False)
+
+    def save_augmented_dataset(self, dataset: pd.DataFrame):
+        dataset.to_csv(self.augmented_datasets_path, index=False)
+
     def get_joined_dataset(self) -> pd.DataFrame:
         if(path.exists(self.joined_datasets_path)):
             return pd.read_csv(self.joined_datasets_path)
@@ -38,6 +46,16 @@ class LocalStorageRepository:
         if(path.exists(self.processed_datasets_path)):
             return pd.read_csv(self.processed_datasets_path)
         return None
+
+    def get_validation_dataset(self) -> pd.DataFrame:
+        if(path.exists(self.validation_datasets_path)):
+            return pd.read_csv(self.validation_datasets_path)
+        return None
+        
+    def get_augmented_dataset(self) -> pd.DataFrame:
+        if(path.exists(self.augmented_datasets_path)):
+            return pd.read_csv(self.augmented_datasets_path)
+        return None        
 
     def __create_directories__(self):
         create_directory_if_not_exists('./data')
