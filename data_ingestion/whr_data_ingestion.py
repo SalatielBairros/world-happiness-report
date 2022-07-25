@@ -14,13 +14,12 @@ class WhrDataIngestion:
         self.__create_directories__()
         self.original_path = './data/original'
 
-    def ingest(self) -> pd.DataFrame:
+    def ingest(self) -> None:
         self.download_data() 
         _ = execute_data_combination()
         _ = execute_data_preparation()
-        prepared_dataset = execute_feature_engineering()
+        _ = execute_feature_engineering()
         _ = execute_data_augmentation()
-        return prepared_dataset        
 
     def download_data(self):
         urls = [env[env_url_var] for env_url_var in EnvironmentVariables.ORIGINAL_URLS]

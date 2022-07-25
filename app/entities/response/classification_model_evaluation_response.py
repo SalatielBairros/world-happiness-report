@@ -1,11 +1,6 @@
 from pydantic import BaseModel
+from app.entities.response.classification_model_evaluation_data import ClassificationModelEvaluationData
 
 class ClassificationModelEvaluationResponse(BaseModel):
-    accuracy: float
-    precision: float
-    recall: float
-    f1_score: float    
-    confusion_matrix: list[list[int]]
-    roc_auc_score: float
-    report_by_label: dict
-    feature_importances: list
+    test_data_evaluation: ClassificationModelEvaluationData
+    validation_data_evaluation: ClassificationModelEvaluationData
