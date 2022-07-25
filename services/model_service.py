@@ -4,6 +4,8 @@ from environment.constants import DatasetConstants
 from models.base_learning_model import BaseLearningModel
 from app.entities.request.country_data import CountryData
 from repository.local_storage_repository import LocalStorageRepository
+from feature_engineering.scaled_hle import ScaledHle
+from lib.io_helper import create_directory_if_not_exists
 import joblib
 
 class ModelService:
@@ -16,11 +18,15 @@ class ModelService:
         if(self.regression_model is None or self.classification_model is None):
             raise Exception('ModelService: __init__: regression_model or classification_model is None')
 
-    def get_prediction_results(self, data: CountryData) -> PredictionResult:
+        create_directory_if_not_exists('./data/models')        
+
+    def get_prediction_results(self, data: CountryData) -> PredictionResult:        
         regression = self.__load_regression_model__()
-        classification = self.__load_classification_model__()
-        
-        df_data = pd.DataFrame(data.dict())
+        classification = self.__load_classification_model__()        
+        df_data = pd.DataFrame(data.dict(), index=[0])
+        df_data['scaled_hle'] = ScaledHle(None).min_max_scaler(data.hle)
+        df_data.drop(columns=['hle'], inplace=True)
+
         score_prediction = regression.predict(df_data.drop(columns=[self.regression_model.target_column]))
         region_prediction = classification.predict(df_data.drop(columns=[self.classification_model.target_column]))
 
@@ -49,13 +55,21 @@ class ModelService:
         model = model_implementation.load_model()
         if(model is None):
             model = model_implementation.get_model()
-            X, y  = self.__get_data__()
+            X, y  = self.__get_data__(model_implementation.target_column, model_implementation.uses_balanced_dataset)
             model.fit(X, y)
             model_name = model_implementation.get_model_name()
-            joblib.dump(self.model, f'./data/models/{model_name}.joblib')
+            joblib.dump(model, f'./data/models/{model_name}.joblib')
         return model
 
-    def __get_data__(self):
-        self.repository.get_processed_dataset()
-        pass
+    def __get_data__(self, target_column: str, balanced: bool):
+        dataset = None
+        if(balanced):
+            dataset = self.repository.get_full_augmented_dataset()
+        else:
+            dataset = self.repository.get_processed_dataset().drop(columns=self.columns_to_drop_x)
+
+        X = dataset.drop(columns=[target_column])
+        y = dataset[target_column]
+
+        return X, y
     

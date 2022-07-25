@@ -4,9 +4,9 @@ import joblib
 from os import path
 
 class BaseLearningModel(metaclass=ABCMeta):
-    def __init__(self, target_column: str = 'score'):
+    def __init__(self, target_column: str = 'score', uses_balanced_dataset: bool = False):
         self.target_column = target_column
-        self.model = None
+        self.uses_balanced_dataset = uses_balanced_dataset
 
     @abstractmethod
     def get_model(self):

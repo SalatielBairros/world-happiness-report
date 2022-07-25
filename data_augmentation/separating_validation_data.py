@@ -8,9 +8,7 @@ class SeparatingValidationData:
         self.dataset = dataset
         self.repository = LocalStorageRepository()
 
-    def execute(self) -> pd.DataFrame:
-        columns_to_drop = ['country', 'region', 'hle', 'year', 'cat_country', 'rounded_score']
-        self.dataset.drop(columns=columns_to_drop, inplace=True)
+    def execute(self) -> pd.DataFrame:        
         X = self.dataset.drop('cat_region', axis=1)
         y = self.dataset['cat_region']
         x_model, x_validation, y_model, y_validation = train_test_split(X, y, test_size=0.15, random_state = EnvironmentVariables.SEED, stratify=y)

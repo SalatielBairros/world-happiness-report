@@ -1,4 +1,5 @@
 import pandas as pd
+from environment.constants import EnvironmentVariables
 
 class ScaledHle():
     """
@@ -27,9 +28,9 @@ class ScaledHle():
         self.dataset['scaled_hle'] = [self.min_max_scaler(x) for x in self.dataset['hle']]
         return self.dataset
 
-    def min_max_scaler(self, x):
-        min = 20
-        max = 90
+    def min_max_scaler(self, x):        
+        min = EnvironmentVariables.MIN_AGE_TO_SCALE
+        max = EnvironmentVariables.MAX_AGE_TO_SCALE
         X_std = (x - min) / (max - min)
         X_scaled = X_std * 1
         return X_scaled

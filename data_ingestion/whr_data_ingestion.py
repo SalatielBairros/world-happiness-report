@@ -6,7 +6,6 @@ from data_combination.data_combination_commands import execute_data_combination
 from data_preparation.data_preparation_commands import execute_data_preparation
 from feature_engineering.feature_engineering_commands import execute_feature_engineering
 from data_augmentation.data_augmentation_executor import execute_data_augmentation
-import pandas as pd
 from lib.io_helper import create_directory_if_not_exists
 
 class WhrDataIngestion:
