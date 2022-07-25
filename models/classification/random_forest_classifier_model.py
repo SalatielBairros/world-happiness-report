@@ -8,3 +8,6 @@ class RandomForestClassifierModel(BaseLearningModel):
 
     def get_model(self):
         return RandomForestClassifier(random_state=EnvironmentVariables.SEED)
+
+    def get_model_name(self) -> str:
+        return 'random_forest_region_classifier'

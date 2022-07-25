@@ -1,6 +1,5 @@
 from models.base_learning_model import BaseLearningModel
 from sklearn.neighbors import KNeighborsClassifier
-from environment.constants import EnvironmentVariables
 
 class KnnClassifierModel(BaseLearningModel):
     def __init__(self, target_column: str = 'cat_region'):
@@ -8,3 +7,6 @@ class KnnClassifierModel(BaseLearningModel):
 
     def get_model(self):
         return KNeighborsClassifier()
+
+    def get_model_name(self) -> str:
+        return 'knn_region_classifier'
