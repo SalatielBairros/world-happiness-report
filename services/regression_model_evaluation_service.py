@@ -6,10 +6,11 @@ from environment.constants import EnvironmentVariables
 from models.base_learning_model import BaseLearningModel
 from repository.local_storage_repository import LocalStorageRepository
 from eli5.sklearn import PermutationImportance
+from environment.constants import DatasetConstants
 
 class RegressionModelEvaluationService:
     def __init__(self, model: BaseLearningModel) -> None:
-        self.columns_to_drop_x = ['country', 'region', 'score', 'year', 'cat_country', 'rounded_score', 'scaled_hle']
+        self.columns_to_drop_x = DatasetConstants.COLUMNS_TO_DROP_TO_TRAINING
         self.model = model
         self.repository = LocalStorageRepository()
 
