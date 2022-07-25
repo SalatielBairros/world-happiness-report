@@ -7,4 +7,4 @@ class KnnClassifierModel(BaseLearningModel):
         super().__init__(target_column)
 
     def get_model(self):
-        return KNeighborsClassifier(random_state=EnvironmentVariables.SEED)
+        return KNeighborsClassifier()

@@ -15,11 +15,13 @@ class ClassificationModelEvaluationService:
     def __init__(self, model: BaseLearningModel) -> None:
         self.model = model
         self.repository = LocalStorageRepository()
+        self.drop_from_processed_dataset = ['country', 'region', 'hle', 'year', 'cat_country', 'rounded_score']
         self.columns = []
 
     def evaluate(self, train_data: pd.DataFrame = None) -> ClassificationModelEvaluationData:
         if(train_data is None):
-            train_data = self.repository.get_processed_dataset()
+            train_data = self.repository.get_processed_dataset().drop(columns=self.drop_from_processed_dataset)
+
         logging.info("Evaluating model...")
         X = train_data.drop(columns=self.model.target_column)
         y = train_data[self.model.target_column]
@@ -29,10 +31,8 @@ class ClassificationModelEvaluationService:
         model = self.model.get_model()
         model.fit(x_train, y_train)
         y_pred = model.predict(x_test)
-
-        y_pred_proba = model.predict_proba(x_test)[::, 1]
        
-        return self.__get_metrics__(y_test, y_pred, y_pred_proba)
+        return self.__get_metrics__(y_test, y_pred, x_test, model)
 
     def evaluate_augmentaded_data(self, balanced_dataset: pd.DataFrame = None) -> ClassificationModelEvaluationResponse:
         if(balanced_dataset is None):
