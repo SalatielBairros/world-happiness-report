@@ -22,7 +22,7 @@ def evaluate_model():
     evaluation = evaluation_service.evaluate_augmentaded_data()
     return evaluation
 
-@router.get('/predict', response_model=PredictionResult)
+@router.put('/predict', response_model=PredictionResult)
 def predict(data: CountryData) -> PredictionResult:
     prediction_result = ModelService(KnnModel(), KnnClassifierModel()).get_prediction_results(data)
     return prediction_result

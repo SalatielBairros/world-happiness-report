@@ -25,5 +25,5 @@ data = CountryData(
 classification_model = KnnClassifierModel()
 regression_model = KnnModel()
 
-prediction_result = ModelService(regression_model, classification_model).get_prediction_results(data)
+prediction_result = ModelService(regression_model, classification_model).get_prediction_results(data, force_model_generation=True)
 print(prediction_result.dict())

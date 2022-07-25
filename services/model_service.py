@@ -11,6 +11,7 @@ import joblib
 class ModelService:
     def __init__(self, regression_model: BaseLearningModel, classification_model: BaseLearningModel):
         self.columns_to_drop_x = DatasetConstants.COLUMNS_TO_DROP_TO_TRAINING
+        self.columns_order = DatasetConstants.COLUMNS_ORDER
         self.regression_model = regression_model
         self.classification_model = classification_model
         self.repository = LocalStorageRepository()
@@ -20,12 +21,13 @@ class ModelService:
 
         create_directory_if_not_exists('./data/models')        
 
-    def get_prediction_results(self, data: CountryData) -> PredictionResult:        
-        regression = self.__load_regression_model__()
-        classification = self.__load_classification_model__()        
+    def get_prediction_results(self, data: CountryData, force_model_generation:bool = False) -> PredictionResult:        
+        regression = self.__load_regression_model__(force_model_generation)
+        classification = self.__load_classification_model__(force_model_generation)        
         df_data = pd.DataFrame(data.dict(), index=[0])
         df_data['scaled_hle'] = ScaledHle(None).min_max_scaler(data.hle)
         df_data.drop(columns=['hle'], inplace=True)
+        df_data = df_data[self.columns_order]
 
         score_prediction = regression.predict(df_data.drop(columns=[self.regression_model.target_column]))
         region_prediction = classification.predict(df_data.drop(columns=[self.classification_model.target_column]))
@@ -45,15 +47,15 @@ class ModelService:
             predicted_region_with_predicted_score=region_with_predicted_score
         )
 
-    def __load_regression_model__(self):
-        return self.__load_model__(self.regression_model)
+    def __load_regression_model__(self, force_model_generation:bool = False):
+        return self.__load_model__(self.regression_model, force_model_generation)
 
-    def __load_classification_model__(self):
-        return self.__load_model__(self.classification_model)
+    def __load_classification_model__(self, force_model_generation:bool = False):
+        return self.__load_model__(self.classification_model, force_model_generation)
 
-    def __load_model__(self, model_implementation: BaseLearningModel):
+    def __load_model__(self, model_implementation: BaseLearningModel, force_model_generation:bool = False):
         model = model_implementation.load_model()
-        if(model is None):
+        if(model is None or force_model_generation):
             model = model_implementation.get_model()
             X, y  = self.__get_data__(model_implementation.target_column, model_implementation.uses_balanced_dataset)
             model.fit(X, y)
@@ -64,9 +66,9 @@ class ModelService:
     def __get_data__(self, target_column: str, balanced: bool):
         dataset = None
         if(balanced):
-            dataset = self.repository.get_full_augmented_dataset()
+            dataset = self.repository.get_full_augmented_dataset()[self.columns_order]
         else:
-            dataset = self.repository.get_processed_dataset().drop(columns=self.columns_to_drop_x)
+            dataset = self.repository.get_processed_dataset().drop(columns=self.columns_to_drop_x)[self.columns_order]
 
         X = dataset.drop(columns=[target_column])
         y = dataset[target_column]
