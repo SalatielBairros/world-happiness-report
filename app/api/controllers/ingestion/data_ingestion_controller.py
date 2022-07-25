@@ -8,4 +8,3 @@ router = APIRouter(prefix="/data-ingestion", tags=["Data ingestion"])
 def evaluate_model():
     ingestor = WhrDataIngestion()
     ingested_data = ingestor.ingest()
-    return ingested_data.to_dict(orient="records")

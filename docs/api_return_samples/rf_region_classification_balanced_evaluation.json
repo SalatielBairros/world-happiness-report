@@ -1,0 +1,542 @@
+{
+    "test_data_evaluation": {
+      "accuracy": 0.9791907514450867,
+      "precision": 0.9797687115474878,
+      "recall": 0.9791907514450867,
+      "f1_score": 0.979141050354028,
+      "confusion_matrix": [
+        [
+          76,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          79,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          79,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          79,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          1,
+          76,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          3,
+          0,
+          74,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          79,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          79,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          79,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          2,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          72,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          75
+        ]
+      ],
+      "report_by_label": {
+        "asia": {
+          "precision": 0.9382716049382716,
+          "recall": 0.9743589743589743,
+          "f1-score": 0.9559748427672956,
+          "support": 78
+        },
+        "baltics": {
+          "precision": 1,
+          "recall": 1,
+          "f1-score": 1,
+          "support": 79
+        },
+        "c.w. of ind. states": {
+          "precision": 0.9753086419753086,
+          "recall": 1,
+          "f1-score": 0.9875,
+          "support": 79
+        },
+        "eastern europe": {
+          "precision": 0.9404761904761905,
+          "recall": 1,
+          "f1-score": 0.9693251533742331,
+          "support": 79
+        },
+        "latin amer. and carib": {
+          "precision": 0.9743589743589743,
+          "recall": 0.9620253164556962,
+          "f1-score": 0.9681528662420382,
+          "support": 79
+        },
+        "near east": {
+          "precision": 1,
+          "recall": 0.9487179487179487,
+          "f1-score": 0.9736842105263158,
+          "support": 78
+        },
+        "northern africa": {
+          "precision": 0.9875,
+          "recall": 1,
+          "f1-score": 0.9937106918238994,
+          "support": 79
+        },
+        "northern america": {
+          "precision": 0.9753086419753086,
+          "recall": 1,
+          "f1-score": 0.9875,
+          "support": 79
+        },
+        "oceania": {
+          "precision": 1,
+          "recall": 1,
+          "f1-score": 1,
+          "support": 79
+        },
+        "sub-saharan africa": {
+          "precision": 0.9863013698630136,
+          "recall": 0.9230769230769231,
+          "f1-score": 0.9536423841059603,
+          "support": 78
+        },
+        "western europe": {
+          "precision": 1,
+          "recall": 0.9615384615384616,
+          "f1-score": 0.9803921568627451,
+          "support": 78
+        },
+        "accuracy": 0.9791907514450867,
+        "macro avg": {
+          "precision": 0.9797750385079153,
+          "recall": 0.9790652385589095,
+          "f1-score": 0.979080209609317,
+          "support": 865
+        },
+        "weighted avg": {
+          "precision": 0.9797687115474878,
+          "recall": 0.9791907514450867,
+          "f1-score": 0.979141050354028,
+          "support": 865
+        }
+      },
+      "feature_importances": [
+        [
+          "score",
+          0.16
+        ],
+        [
+          "gdp",
+          0.38
+        ],
+        [
+          "social_support",
+          0.06
+        ],
+        [
+          "freedom",
+          0.03
+        ],
+        [
+          "generosity",
+          0.17
+        ],
+        [
+          "corruption",
+          0.06
+        ],
+        [
+          "positive_affect",
+          0.22
+        ],
+        [
+          "negative_affect",
+          0.12
+        ],
+        [
+          "scaled_hle",
+          0.25
+        ]
+      ]
+    },
+    "validation_data_evaluation": {
+      "accuracy": 0.9301587301587302,
+      "precision": 0.9335159126481957,
+      "recall": 0.9301587301587302,
+      "f1_score": 0.930441806263831,
+      "confusion_matrix": [
+        [
+          45,
+          0,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          7,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          24,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          27,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          44,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          2,
+          0,
+          21,
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          6,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          5,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          69,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          0,
+          0,
+          41
+        ]
+      ],
+      "report_by_label": {
+        "asia": {
+          "precision": 0.9375,
+          "recall": 0.9375,
+          "f1-score": 0.9375,
+          "support": 48
+        },
+        "baltics": {
+          "precision": 0.7777777777777778,
+          "recall": 1,
+          "f1-score": 0.8750000000000001,
+          "support": 7
+        },
+        "c.w. of ind. states": {
+          "precision": 0.8888888888888888,
+          "recall": 0.8888888888888888,
+          "f1-score": 0.8888888888888888,
+          "support": 27
+        },
+        "eastern europe": {
+          "precision": 0.8709677419354839,
+          "recall": 0.9310344827586207,
+          "f1-score": 0.9,
+          "support": 29
+        },
+        "latin amer. and carib": {
+          "precision": 1,
+          "recall": 0.9565217391304348,
+          "f1-score": 0.9777777777777777,
+          "support": 46
+        },
+        "near east": {
+          "precision": 0.9545454545454546,
+          "recall": 0.8076923076923077,
+          "f1-score": 0.875,
+          "support": 26
+        },
+        "northern africa": {
+          "precision": 0.6666666666666666,
+          "recall": 0.75,
+          "f1-score": 0.7058823529411765,
+          "support": 8
+        },
+        "northern america": {
+          "precision": 0.8333333333333334,
+          "recall": 1,
+          "f1-score": 0.9090909090909091,
+          "support": 5
+        },
+        "oceania": {
+          "precision": 1,
+          "recall": 0.8,
+          "f1-score": 0.888888888888889,
+          "support": 5
+        },
+        "sub-saharan africa": {
+          "precision": 0.9583333333333334,
+          "recall": 0.9857142857142858,
+          "f1-score": 0.971830985915493,
+          "support": 70
+        },
+        "western europe": {
+          "precision": 0.9534883720930233,
+          "recall": 0.9318181818181818,
+          "f1-score": 0.942528735632184,
+          "support": 44
+        },
+        "accuracy": 0.9301587301587302,
+        "macro avg": {
+          "precision": 0.8946819607794511,
+          "recall": 0.9081063532729746,
+          "f1-score": 0.8974898671941198,
+          "support": 315
+        },
+        "weighted avg": {
+          "precision": 0.9335159126481957,
+          "recall": 0.9301587301587302,
+          "f1-score": 0.930441806263831,
+          "support": 315
+        }
+      },
+      "feature_importances": [
+        [
+          "score",
+          0.09
+        ],
+        [
+          "gdp",
+          0.28
+        ],
+        [
+          "social_support",
+          0.04
+        ],
+        [
+          "freedom",
+          0.04
+        ],
+        [
+          "generosity",
+          0.11
+        ],
+        [
+          "corruption",
+          0.05
+        ],
+        [
+          "positive_affect",
+          0.17
+        ],
+        [
+          "negative_affect",
+          0.1
+        ],
+        [
+          "scaled_hle",
+          0.37
+        ]
+      ]
+    }
+  }
