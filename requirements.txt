@@ -3,3 +3,4 @@ xlrd==2.0.1
 pydantic
 sklearn
 numpy
+eli5
