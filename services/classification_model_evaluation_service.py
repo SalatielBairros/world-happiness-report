@@ -3,7 +3,7 @@ from app.entities.response.classification_model_evaluation_data import Classific
 import logging
 from sklearn.model_selection import train_test_split
 from models.base_learning_model import BaseLearningModel
-from environment.constants import EnvironmentVariables
+from environment.constants import EnvironmentVariables, DatasetConstants
 import pandas as pd
 from sklearn import metrics
 from sklearn.metrics import confusion_matrix
@@ -15,7 +15,7 @@ class ClassificationModelEvaluationService:
     def __init__(self, model: BaseLearningModel) -> None:
         self.model = model
         self.repository = LocalStorageRepository()
-        self.drop_from_processed_dataset = ['country', 'region', 'hle', 'year', 'cat_country', 'rounded_score']
+        self.drop_from_processed_dataset = DatasetConstants.COLUMNS_TO_DROP_TO_TRAINING
         self.columns = []
 
     def evaluate(self, train_data: pd.DataFrame = None) -> ClassificationModelEvaluationData:

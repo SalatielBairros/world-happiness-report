@@ -49,7 +49,7 @@ class RegressionModelEvaluationService:
         for year in years:
             to_train = dataset.query(f'year != {year}')
             to_test = dataset.query(f'year == {year}')
-            X = to_train.drop(self.columns_to_drop_x, axis=1)
+            X = to_train.drop(self.columns_to_drop_x, axis=1).drop(columns=[self.model.target_column])
             y = to_train[self.model.target_column]
             X_test = to_test.drop(self.columns_to_drop_x, axis=1)
             y_test = to_test[self.model.target_column]
