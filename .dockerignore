@@ -1,0 +1,14 @@
+__pycache__
+.vscode/
+.github/
+data/
+assets/
+docs/
+sh/
+views/
+.git/
+.gitignore
+console_main.py
+docker-compose.yml
+generate_samples.py
+README.md

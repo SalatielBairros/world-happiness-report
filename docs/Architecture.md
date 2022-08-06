@@ -19,7 +19,6 @@
 |├── models
 |├── repository
 |├── services
-|├── sh
 |├── views
 ```
 
@@ -137,14 +136,6 @@
 
 - Funções especificas do projeto
 
-## **SH**
-
-```markdown
-| ├── sh
-```
-
-- Scripts de automação do projeto
-
 ## **VIEWS**
 
 ```markdown
@@ -152,3 +143,14 @@
 ```
 
 - Views geradas pelo Pandas Profiling
+
+----
+
+> **Padrões de design de código aplicados**:
+> As etapas:
+> * features engineering
+> * data preparation
+> * data augmentation
+> * data combination
+> 
+> Utilizam de uma variação do _Design Pattern_ [Commands](https://refactoring.guru/pt-br/design-patterns/command).

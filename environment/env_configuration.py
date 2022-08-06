@@ -1,4 +1,4 @@
-from os import environ as env, path, mkdir
+from os import environ as env, path
 import json
 import logging
 import numpy as np
