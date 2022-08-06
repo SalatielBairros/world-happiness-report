@@ -11,6 +11,7 @@ class LocalStorageRepository:
         self.validation_datasets_path = './data/processed/validation_dataset.csv'
         self.augmented_datasets_path = './data/processed/augmented_dataset.csv'
         self.full_augmented_datasets_path = './data/processed/full_augmented_dataset.csv'
+        self.pandemic_countries_data_path = './data/processed/pandemic_countries_dataset.csv'        
 
     def get_original_historic_data(self) -> pd.DataFrame:
         return pd.read_excel('./data/original/HistoricData.xls')
@@ -35,6 +36,9 @@ class LocalStorageRepository:
 
     def save_full_augmented_dataset(self, dataset: pd.DataFrame):
         dataset.to_csv(self.full_augmented_datasets_path, index=False)
+
+    def save_pandemic_countries_data(self, dataset: pd.DataFrame):
+        dataset.to_csv(self.pandemic_countries_data_path, index=False)
 
     def get_joined_dataset(self) -> pd.DataFrame:
         if(path.exists(self.joined_datasets_path)):
