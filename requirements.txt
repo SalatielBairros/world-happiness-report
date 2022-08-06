@@ -1,6 +1,9 @@
 pandas==1.4.0
 xlrd==2.0.1
-pydantic
-sklearn
-numpy
-eli5
+pydantic==1.9.1
+scikit-learn==1.1.1
+numpy==1.22.0
+eli5==0.13.0
+fastapi==0.78.0
+joblib==1.1.0
+uvicorn==0.17.6
