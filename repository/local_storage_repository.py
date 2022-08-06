@@ -40,6 +40,11 @@ class LocalStorageRepository:
     def save_pandemic_countries_data(self, dataset: pd.DataFrame):
         dataset.to_csv(self.pandemic_countries_data_path, index=False)
 
+    def get_pandemic_dataset(self) -> pd.DataFrame:
+        if(path.exists(self.pandemic_countries_data_path)):
+            return pd.read_csv(self.pandemic_countries_data_path)
+        return None
+
     def get_joined_dataset(self) -> pd.DataFrame:
         if(path.exists(self.joined_datasets_path)):
             return pd.read_csv(self.joined_datasets_path)
