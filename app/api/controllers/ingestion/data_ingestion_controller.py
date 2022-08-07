@@ -16,11 +16,19 @@ def evaluate_model(response: Response):
         return {"message": "Data ingestion failed", "error": str(e)}
 
 @router.get("/ingested/processed-data")
-def get_processed_data():
-    repository = LocalStorageRepository()
-    return repository.get_processed_dataset().to_dict(orient='records')
+def get_processed_data(response: Response):
+    try:
+        repository = LocalStorageRepository()
+        return repository.get_processed_dataset().to_dict(orient='records')
+    except Exception as e:
+        response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
+        return {"message": "Processed data ingestion failed", "error": str(e)}
 
 @router.get("/ingested/pandemic-data")
-def get_pandemic_data():
-    repository = LocalStorageRepository()
-    return repository.get_pandemic_dataset().to_dict(orient='records')
+def get_pandemic_data(response: Response):
+    try:
+        repository = LocalStorageRepository()
+        return repository.get_pandemic_dataset().to_dict(orient='records')
+    except Exception as e:
+        response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
+        return {"message": "Pandemic data ingestion failed", "error": str(e)}
