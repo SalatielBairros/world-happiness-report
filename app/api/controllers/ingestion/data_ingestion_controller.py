@@ -3,6 +3,7 @@ from data_ingestion.whr_data_ingestion import WhrDataIngestion
 from repository.local_storage_repository import LocalStorageRepository
 
 router = APIRouter(prefix="/data-ingestion", tags=["Data ingestion"])
+_repository = LocalStorageRepository()
 
 @router.post("/ingest")
 def evaluate_model(response: Response):
@@ -18,11 +19,10 @@ def evaluate_model(response: Response):
 @router.get("/ingested/processed-data")
 def get_processed_data(response: Response):
     try:
-        repository = LocalStorageRepository()
-        return repository.get_processed_dataset().to_dict(orient='records')
+        return _repository.get_processed_dataset().to_dict(orient='records')
     except Exception as e:
         response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
-        return {"message": "Processed data ingestion failed", "error": str(e)}
+        return {"message": "Error to get processed data", "error": str(e)}
 
 @router.get("/ingested/pandemic-data")
 def get_pandemic_data(response: Response):

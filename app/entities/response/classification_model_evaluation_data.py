@@ -1,4 +1,3 @@
-from typing import List
 from pydantic import BaseModel
 
 class ClassificationModelEvaluationData(BaseModel):
@@ -6,6 +5,6 @@ class ClassificationModelEvaluationData(BaseModel):
     precision: float
     recall: float
     f1_score: float    
-    confusion_matrix: List[List[int]]
+    confusion_matrix: list[list[int]]
     report_by_label: dict
     feature_importances: list

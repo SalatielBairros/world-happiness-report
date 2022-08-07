@@ -191,4 +191,7 @@ Realiza a predição de um score através dos dados informados.
 
 * Criação de um Frontend para a visualização dos dados e dos resultados;
 * Utilização de um banco de dados para armazenar o dataset ingerido e os resultados obtidos;
-* Paralelizar algumas etapas das transformações dos dados.
+* Paralelizar algumas etapas das transformações dos dados;
+* Utilizar Azure files para armazenar os dados ingerido;
+* Criar testes unitários;
+* Adicionar Azure Application Insights para monitorar o desempenho do serviço.

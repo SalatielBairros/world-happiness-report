@@ -1,4 +1,3 @@
-from typing import List
 import pandas as pd
 from app.entities.response.regression_model_evaluation_response import RegressionModelEvaluationResponse
 from sklearn import metrics
@@ -15,7 +14,7 @@ class RegressionModelEvaluationService:
         self.model = model
         self.repository = LocalStorageRepository()
 
-    def evaluate(self) -> List[RegressionModelEvaluationResponse]:
+    def evaluate(self) -> list[RegressionModelEvaluationResponse]:
         dataset = self.repository.get_processed_dataset()
         if(dataset is None):
             raise Exception('Dataset is empty')

@@ -1,6 +1,7 @@
 import pandas as pd
 from os import path
 from lib.io_helper import create_directory_if_not_exists
+from lib.memo_cache import memo
 
 class LocalStorageRepository:
     def __init__(self) -> None:
@@ -55,6 +56,7 @@ class LocalStorageRepository:
             return pd.read_csv(self.prepared_datasets_path)
         return None
 
+    @memo
     def get_processed_dataset(self) -> pd.DataFrame:
         if(path.exists(self.processed_datasets_path)):
             return pd.read_csv(self.processed_datasets_path)

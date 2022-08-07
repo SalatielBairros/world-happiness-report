@@ -1,4 +1,3 @@
-from typing import List
 from fastapi import APIRouter, Response, status
 from app.entities.request.country_data import CountryData
 from app.entities.response.prediction_result import PredictionResult
@@ -10,8 +9,8 @@ from models.regression.random_forest_model import RandomForestRegressorModel
 
 router = APIRouter(prefix="/score-regression/random-forest", tags=["RandomForestRegressor"])
 
-@router.get("/evaluate", response_model=List[RegressionModelEvaluationResponse])
-def evaluate_model(response: Response) -> List[RegressionModelEvaluationResponse]:
+@router.get("/evaluate", response_model=list[RegressionModelEvaluationResponse])
+def evaluate_model(response: Response) -> list[RegressionModelEvaluationResponse]:
     try:
         evaluation_service = RegressionModelEvaluationService(RandomForestRegressorModel())
         evaluation = evaluation_service.evaluate()
