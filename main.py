@@ -7,6 +7,7 @@ from app.api.controllers.ingestion.data_ingestion_controller import router as da
 from app.api.controllers.region_classification.rf_region_controller import router as rf_region_router
 from app.api.controllers.region_classification.knn_region_controller import router as knn_region_router
 from fastapi.openapi.utils import get_openapi
+from fastapi.middleware.cors import CORSMiddleware
 
 prepare_environment()
 app = FastAPI()
@@ -26,4 +27,9 @@ app.openapi_schema = get_openapi(
         "name": "Salatiel Bairros",
         "email": "salatiel.costabairros@gmail.com"
     }
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
 )

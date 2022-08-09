@@ -11,6 +11,8 @@ from repository.local_storage_repository import LocalStorageRepository
 from eli5.sklearn import PermutationImportance
 import numpy as np
 
+classification_evaluation_cache = {}
+
 class ClassificationModelEvaluationService:
     def __init__(self, model: BaseLearningModel) -> None:
         self.model = model
@@ -19,6 +21,10 @@ class ClassificationModelEvaluationService:
         self.columns = []
 
     def evaluate(self, train_data: pd.DataFrame = None) -> ClassificationModelEvaluationData:
+        model_name = self.model.get_model_name()
+        if(model_name in classification_evaluation_cache):
+            return classification_evaluation_cache[model_name]    
+
         if(train_data is None):
             train_data = self.repository.get_processed_dataset().drop(columns=self.drop_from_processed_dataset)
 
@@ -32,9 +38,14 @@ class ClassificationModelEvaluationService:
         model.fit(x_train, y_train)
         y_pred = model.predict(x_test)
        
-        return self.__get_metrics__(y_test, y_pred, x_test, model)
+        classification_evaluation_cache[model_name] = self.__get_metrics__(y_test, y_pred, x_test, model)
+        return classification_evaluation_cache[model_name]
 
     def evaluate_augmentaded_data(self, balanced_dataset: pd.DataFrame = None) -> ClassificationModelEvaluationResponse:
+        model_name = f'balanced_{self.model.get_model_name()}'
+        if(model_name in classification_evaluation_cache):
+            return classification_evaluation_cache[model_name]
+
         if(balanced_dataset is None):
             balanced_dataset = self.repository.get_augmented_dataset()
         
@@ -57,9 +68,10 @@ class ClassificationModelEvaluationService:
         test_metrics = self.__get_metrics__(y_test, y_test_pred, x_test, test_model)
         validation_metrics = self.__get_metrics__(y_validation, y_validation_pred, x_validation, validation_model)
 
-        return ClassificationModelEvaluationResponse(
+        classification_evaluation_cache[model_name] = ClassificationModelEvaluationResponse(
             test_data_evaluation=test_metrics,
             validation_data_evaluation=validation_metrics)
+        return classification_evaluation_cache[model_name]
 
     def __get_metrics__(self, y_real, y_pred, x_test, model) -> ClassificationModelEvaluationData:
         accuracy = metrics.accuracy_score(y_real, y_pred)

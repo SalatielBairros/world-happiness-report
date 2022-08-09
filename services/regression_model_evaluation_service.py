@@ -3,10 +3,13 @@ from app.entities.response.regression_model_evaluation_response import Regressio
 from sklearn import metrics
 import numpy as np
 from environment.constants import EnvironmentVariables
+from lib.memo_cache import memo
 from models.base_learning_model import BaseLearningModel
 from repository.local_storage_repository import LocalStorageRepository
 from eli5.sklearn import PermutationImportance
 from environment.constants import DatasetConstants
+
+regression_evaluation_cache = {}
 
 class RegressionModelEvaluationService:
     def __init__(self, model: BaseLearningModel) -> None:
@@ -15,11 +18,16 @@ class RegressionModelEvaluationService:
         self.repository = LocalStorageRepository()
 
     def evaluate(self) -> list[RegressionModelEvaluationResponse]:
+        model_name = self.model.get_model_name()
+        if(model_name in regression_evaluation_cache):
+            return regression_evaluation_cache[model_name]        
+
         dataset = self.repository.get_processed_dataset()
         if(dataset is None):
             raise Exception('Dataset is empty')
 
-        return self.__year_cross_validation__(dataset)        
+        regression_evaluation_cache[model_name] = self.__year_cross_validation__(dataset)
+        return regression_evaluation_cache[model_name]
 
     def __get_metrics__(self, y_real, y_pred, x_test, model, year) -> RegressionModelEvaluationResponse:
         r2 = metrics.r2_score(y_real, y_pred)
@@ -51,7 +59,7 @@ class RegressionModelEvaluationService:
             to_test = dataset.query(f'year == {year}')
             X = to_train.drop(self.columns_to_drop_x, axis=1).drop(columns=[self.model.target_column])
             y = to_train[self.model.target_column]
-            X_test = to_test.drop(self.columns_to_drop_x, axis=1)
+            X_test = to_test.drop(self.columns_to_drop_x, axis=1).drop(columns=[self.model.target_column])
             y_test = to_test[self.model.target_column]
 
             model = self.model.get_model()
