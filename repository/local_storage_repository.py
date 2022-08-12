@@ -57,9 +57,12 @@ class LocalStorageRepository:
         return None
 
     @memo
-    def get_processed_dataset(self) -> pd.DataFrame:
+    def get_processed_dataset(self, exception: bool = False) -> pd.DataFrame:
         if(path.exists(self.processed_datasets_path)):
-            return pd.read_csv(self.processed_datasets_path)
+            processed_dataset = pd.read_csv(self.processed_datasets_path)
+            return processed_dataset
+        if(exception):
+            raise Exception('Processed dataset not found')
         return None
 
     def get_validation_dataset(self) -> pd.DataFrame:

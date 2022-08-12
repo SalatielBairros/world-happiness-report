@@ -1,5 +1,7 @@
-from environment.env_configuration import prepare_environment
-from feature_engineering.feature_engineering_commands import execute_feature_engineering
+import pandas as pd
+import pickle
 
-prepare_environment()
-execute_feature_engineering()
+dataset = pd.read_csv('./data/processed/joined_dataset.csv').reset_index().sort_values(by='region').rename(columns={'index': 'custom_index'}).set_index('custom_index')
+print(dataset)
+dataset_copy = pickle.loads(pickle.dumps(dataset))
+print(dataset)

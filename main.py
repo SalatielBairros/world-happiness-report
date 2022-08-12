@@ -8,8 +8,13 @@ from app.api.controllers.region_classification.rf_region_controller import route
 from app.api.controllers.region_classification.knn_region_controller import router as knn_region_router
 from fastapi.openapi.utils import get_openapi
 from fastapi.middleware.cors import CORSMiddleware
+from data_ingestion.whr_data_ingestion import WhrDataIngestion
 
 prepare_environment()
+
+ingestor = WhrDataIngestion()
+ingestor.ingest()
+
 app = FastAPI()
 app.include_router(index_router)
 app.include_router(rf_router)

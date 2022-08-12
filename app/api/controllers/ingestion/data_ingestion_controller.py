@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Response, status
 from data_ingestion.whr_data_ingestion import WhrDataIngestion
 from repository.local_storage_repository import LocalStorageRepository
-
+import logging
 router = APIRouter(prefix="/data-ingestion", tags=["Data ingestion"])
 _repository = LocalStorageRepository()
 
@@ -14,6 +14,7 @@ def evaluate_model(response: Response):
         return {"message": "Data ingestion completed successfully"}
     except Exception as e:
         response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
+        logging.error(e)
         return {"message": "Data ingestion failed", "error": str(e)}
 
 @router.get("/ingested/processed-data")
@@ -26,6 +27,7 @@ def get_processed_data(columns:str, response: Response):
         return processed_dataset.to_dict(orient='records')
     except Exception as e:
         response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
+        logging.error(e)
         return {"message": "Error to get processed data", "error": str(e)}
 
 @router.get("/ingested/pandemic-data")
@@ -34,6 +36,7 @@ def get_pandemic_data(response: Response):
         return _repository.get_pandemic_dataset().to_dict(orient='records')
     except Exception as e:
         response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
+        logging.error(e)
         return {"message": "Pandemic data ingestion failed", "error": str(e)}
 
 @router.get("/ingested/processed-data/grouped")
@@ -52,6 +55,7 @@ def get_grouped_data(group_by:str, columns:str, response: Response, country:str=
         return grouped_data.to_dict(orient='records')
     except Exception as e:
         response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
+        logging.error(e)
         return {"message": "Error to get grouped data", "error": str(e)}
 
 @router.get("/ingested/processed-data/countries")
@@ -63,17 +67,21 @@ def get_countries(response: Response):
         }
     except Exception as e:
         response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
+        logging.error(e)
         return {"message": "Error to get countries", "error": str(e)}
 
 @router.get("/ingested/processed-data/regions")
 def get_regions(response: Response):
     try:
-        regions = _repository.get_processed_dataset()['region'].unique().tolist()
+        processed_dataset = _repository.get_processed_dataset(exception=True)
+        print(processed_dataset)
+        regions = processed_dataset['region'].unique().tolist()
         return {
             'data': regions
         }
     except Exception as e:
         response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
+        logging.error(e)
         return {"message": "Error to get regions", "error": str(e)}
 
 @router.get("/ingested/processed-data/correlations")
@@ -87,6 +95,7 @@ def get_correlations(columns:str, response: Response):
         return correlations.to_dict(orient='list')
     except Exception as e:
         response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
+        logging.error(e)
         return {"message": "Error to get correlations", "error": str(e)}
 
 @router.get("/ingested/processed-data/pandemic/grouped")
@@ -105,6 +114,7 @@ def get_pandemic_grouped_data(group_by:str, columns:str, response: Response, cou
         return grouped_data.to_dict(orient='records')
     except Exception as e:
         response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
+        logging.error(e)
         return {"message": "Error to get pandemic grouped data", "error": str(e)}
 
 def __get_columns__(columns:str) -> list[str]:
