@@ -82,6 +82,8 @@ pip install -r requirements.txt
 
 Após isso, basta rodar o projeto através do comando:
 
+>Obs: Utilizar a versão 3.10 do python
+
 ```bash
 uvicorn main:app --host 0.0.0.0 --port 80
 ```
