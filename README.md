@@ -91,7 +91,7 @@ uvicorn main:app --host 0.0.0.0 --port 80
 Para gerar a imagem do projeto basta rodar o comando:
 
 ```bash
-docker build -t tccworldhappinessreport.azurecr.io/modelapi
+docker build -t tccworldhappinessreport.azurecr.io/modelapi .
 ```
 
 O nome da imagem informado acima (`tccworldhappinessreport.azurecr.io/modelapi`) é o mesmo utilizado no serviço do Azure.
